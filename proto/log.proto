@@ -1,0 +1,9 @@
+package protobuf;
+option java_package = "com.song.moja.protobuf";
+option java_outer_classname = "LogProbuf";
+message Log {
+//日志id
+required int32 log_id = 1;
+//日志消息
+optional string log_msg = 2;
+}
