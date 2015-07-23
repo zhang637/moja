@@ -4,6 +4,11 @@ import java.util.Properties;
 
 import com.song.moja.server.Config;
 import com.song.moja.util.Utils;
+/**
+ * 关于日志的配置
+ * @author 3gods.com
+ *
+ */
 public class LogConfig  extends Config{
 
 	public LogConfig(Properties props) {

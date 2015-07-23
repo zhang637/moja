@@ -13,10 +13,14 @@ import org.apache.log4j.Logger;
 
 import com.song.moja.log.LogConfig;
 import com.song.moja.mq.Message;
-import com.song.moja.serialize.FastJsonSerialize;
-import com.song.moja.util.FileUtils;
+import com.song.moja.serialize.FastJsonSerializer;
+import com.song.moja.util.Utils;
 
-
+/**
+ * 持久化的线程
+ * @author 3gods.com
+ *
+ */
 public class PersistThread<T> extends Thread {
 	private static Logger LOG = Logger.getLogger(PersistThread.class);
 
@@ -42,13 +46,13 @@ public class PersistThread<T> extends Thread {
 		File file = null;
 		OutputStream out = null;
 		try {
-			file = FileUtils.getMsgInputFile();
+			file = Utils.getCanonicalFile(new File(config.getDir()));
 			out = new FileOutputStream(file, true);
 
 			for (int i = 0; i < tempList.size(); i++) {
 				out = isFile2Big(file, logMaxSize, out);
 				T log = tempList.get(i);
-				byte[] bys = FastJsonSerialize.serialize(log);
+				byte[] bys = FastJsonSerializer.serialize(log);
 				//写入文件
 				out.write(bys);
 				tempList.remove(i);

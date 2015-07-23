@@ -1,5 +1,7 @@
 package com.song.moja.netty;
 
+import java.io.Closeable;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
@@ -12,10 +14,14 @@ import org.apache.log4j.Logger;
 
 import com.song.moja.server.ServerConfig;
 import com.song.moja.server.ThreadManager;
-import com.song.moja.zk.ServiceProvider;
-import com.sun.xml.internal.ws.Closeable;
-
-public class NettyServer extends Thread implements Closeable {
+import com.song.moja.util.Constance;
+/**
+ * Netty服务器类，负责监听请求
+ * @author 3gods.com
+ * @param <T>
+ *
+ */
+public class NettyServer<T> extends Thread implements Closeable {
 	private static Logger LOG = Logger.getLogger(NettyServer.class);
 	
 	private final int port;
@@ -23,7 +29,7 @@ public class NettyServer extends Thread implements Closeable {
     final EventLoopGroup workerGroup = new NioEventLoopGroup(10);
 	
     private ServerConfig config;
-    private ThreadManager threadManager;
+    private ThreadManager<T> threadManager;
     
     private String logTransferType;
     
@@ -31,10 +37,11 @@ public class NettyServer extends Thread implements Closeable {
 		this.port = port;
 	}
 
-	public NettyServer(ThreadManager threadManager, ServerConfig config) {
+	public NettyServer(ThreadManager<T> threadManager, ServerConfig config) {
 		this.threadManager = threadManager;
 		this.config = config;
 		this.port = config.getPort();
+		//获取配置的日志传输方式
 		this.logTransferType = config.getLogTransferType();
 	}
 
@@ -44,10 +51,10 @@ public class NettyServer extends Thread implements Closeable {
 			b.option(ChannelOption.SO_BACKLOG, 1024);
 			
 			ChannelHandler childHandler = null;
-			if(logTransferType.equalsIgnoreCase("protobuf")){
-				childHandler = new ProtobufNettyServerInitializer(threadManager,config);
+			if(logTransferType.equalsIgnoreCase(Constance.LOG_TYPE_PB)){
+				childHandler = new ProtobufNettyServerInitializer<T>(threadManager,config);
 				
-			}else if(logTransferType.equalsIgnoreCase("json")){
+			}else if(logTransferType.equalsIgnoreCase(Constance.LOG_TYPE_JSON)){
 				childHandler = new NettyServerInitializer(threadManager,config);
 				
 			}else{
@@ -60,14 +67,11 @@ public class NettyServer extends Thread implements Closeable {
 			Channel ch = null;
 			try {
 				ch = b.bind(port).sync().channel();
-				LOG.error("NettyServer start at port {}"+port,null);
+				LOG.info("NettyServer启动"+port);
 				ch.closeFuture().sync();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			//启动服务器之后去zookeeper注册ServerSocket地址
-			ServiceProvider provider = new ServiceProvider();
-			provider.publish("localhost", port);
 			
 		} finally {
 			bossGroup.shutdownGracefully();
@@ -78,10 +82,9 @@ public class NettyServer extends Thread implements Closeable {
 
 
     public void close() {
-        LOG.info("PHP日志服务器ProtobufNettyServer关闭，释放占用端口"+port);
+        LOG.info("日志服务器关闭，释放占用端口"+port);
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        //这里需要通知zookeeper吗，不通知，zookeeper自己等下知道，通知了更加人性化
     }
 	
 }

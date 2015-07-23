@@ -25,29 +25,7 @@ import org.apache.log4j.Logger;
 import com.song.moja.util.PropertyUtil;
 
 
-/**
- * 
- * <p>
- * 文件名称:HDFSUtil.java
- * <p>
- * <p>
- * 文件描述:本类描述
- * <p>
- * 版权所有:湖南省蓝蜻蜓网络科技有限公司版权所有(C)2015
- * </p>
- * <p>
- * 内容摘要:此类封装了对HDFS文件系统的操作方法
- * </p>
- * <p>
- * HDFS工具类
- * </p>
- * <p>
- * 完成日期:2015年4月23日下午6:54:48
- * </p>
- * <p>
- * 
- * @author songxin
- */
+
 public class HDFSUtil {
 	private HDFSUtil() {
 

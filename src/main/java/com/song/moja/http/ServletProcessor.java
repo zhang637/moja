@@ -1,13 +1,16 @@
 package com.song.moja.http;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandler;
-import java.io.File;
-import java.io.IOException;
+
 import javax.servlet.Servlet;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
+import com.song.moja.util.Constance;
 
 public class ServletProcessor {
 
@@ -22,7 +25,7 @@ public class ServletProcessor {
 			// create a URLClassLoader
 			URL[] urls = new URL[1];
 			URLStreamHandler streamHandler = null;
-			File classPath = new File(HttpConstants.WEB_ROOT);
+			File classPath = new File(Constance.WEB_ROOT);
 			// the forming of repository is taken from the createClassLoader
 			// method in
 			// org.apache.catalina.startup.ClassLoaderFactory

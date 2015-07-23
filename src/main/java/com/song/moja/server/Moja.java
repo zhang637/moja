@@ -11,6 +11,11 @@ import com.song.moja.util.Constance;
 import com.song.moja.util.PropertyUtil;
 import com.song.moja.util.Utils;
 
+/**
+ * 程序入口类，主要是加载配置文件，添加hook线程
+ * @author 3gods.com
+ *
+ */
 public class Moja implements Closeable {
 	private final Logger LOG = Logger.getLogger(Moja.class);
 	
@@ -20,30 +25,30 @@ public class Moja implements Closeable {
 
 	public static void main(String[] args) {
 		int argsSize = args.length;
-		String phplogsysConfigPath = null;
+		String mojaConfigPath = null;
 		String log4jConfigPath = null;
 		if (argsSize <= 0) {
 			System.out
-					.println("没有配置日志系统配置文件，系统正在退出!!!" + "如要使用默认参数，请使用default参数");
+					.println("没有配置日志系统配置文件，系统正在退出!!!" + "如要使用默认参数，请使用DEFAULT参数");
 			System.exit(1);
 		}
 
 		if (argsSize == 1 && args[0].equalsIgnoreCase("DEFAULT")) {
 			System.out.println("采用系统默认配置参数，在当前文件夹获取配置文件!!!");
-			phplogsysConfigPath = Constance.PHPLOGSYS_CONFIG_PATH;
-			log4jConfigPath = Constance.PHPLOGSYS_LOG4J_PATH;
+			mojaConfigPath = Constance.MOJA_CONFIG_PATH;
+			log4jConfigPath = Constance.MOJA_LOG4J_PATH;
 		}
 
 		if (argsSize == 2) {
-			phplogsysConfigPath = args[0];
+			mojaConfigPath = args[0];
 			log4jConfigPath = args[1];
-			System.out.println("采用自定义配置参数文件!!!" + "phplogsysConfigPath的路径是:"
-					+ phplogsysConfigPath + "log4jConfigPath的路径是:"
+			System.out.println("采用自定义配置参数文件!!!" + "mojaConfigPath的路径是:"
+					+ mojaConfigPath + "log4jConfigPath的路径是:"
 					+ log4jConfigPath);
 		}
 
 		Moja moja = new Moja();
-		moja.start(phplogsysConfigPath, log4jConfigPath);
+		moja.start(mojaConfigPath, log4jConfigPath);
 
 		moja.awaitShutdown();
 		moja.close();
@@ -59,33 +64,32 @@ public class Moja implements Closeable {
 		}
 	}
 
-	private void start(String phplogsysConfigPath, String log4jConfigPaht) {
+	private void start(String mojaConfigPath, String log4jConfigPaht) {
 
-		File phplogsysPropFile = Utils.getCanonicalFile(new File(
-				phplogsysConfigPath));
+		File mojaPropFile = Utils.getCanonicalFile(new File(
+				mojaConfigPath));
 
 		File log4jPropFile = Utils.getCanonicalFile(new File(log4jConfigPaht));
 		
-		if (!phplogsysPropFile.isFile() || !phplogsysPropFile.exists()
+		if (!mojaPropFile.isFile() || !mojaPropFile.exists()
 				|| !log4jPropFile.isFile() || !log4jPropFile.exists()) {
 			System.err
 					.println(String
-							.format("phplogsys.properties或log4j.properties不存在,获取到的路径是 => '%s'",
+							.format("moja.properties或log4j.properties不存在,获取到的路径是 => '%s'",
 									new Object[] {
-											phplogsysPropFile.getAbsolutePath(),
+									mojaPropFile.getAbsolutePath(),
 											log4jPropFile.getAbsolutePath() }));
 			System.exit(2);
 		}
-		//之前代码部分引用到此类，比如FileUtils，需要修改
-		PropertyUtil.init(phplogsysConfigPath);
+		PropertyUtil.init(mojaConfigPath);
 		
-		start(Utils.loadProps(phplogsysConfigPath),
+		start(Utils.loadProps(mojaConfigPath),
 				Utils.loadProps(log4jConfigPaht));
 	}
 
-	private void start(Properties phplogsysProp, Properties log4jProp) {
+	private void start(Properties mojaProp, Properties log4jProp) {
 		//加载日志服务配置
-		final ServerConfig config = new ServerConfig(phplogsysProp);
+		final ServerConfig config = new ServerConfig(mojaProp);
 		//加载log4j配置
 		PropertyConfigurator.configure(log4jProp);
 		
@@ -114,6 +118,7 @@ public class Moja implements Closeable {
 				Runtime.getRuntime().removeShutdownHook(shutdownHook);
 			} catch (IllegalStateException ex) {
 				// ignore shutting down status
+				LOG.warn(ex.getMessage(),ex);
 			}
 			shutdownHook.run();
 			shutdownHook = null;
@@ -132,6 +137,5 @@ public class Moja implements Closeable {
 			LOG.info("force flush all messages to disk");
 			this.server.getThreadManager().flushAllLogs();
 		}
-
 	}
 }

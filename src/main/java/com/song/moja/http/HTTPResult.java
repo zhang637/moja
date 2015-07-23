@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.song.moja.util.Constance;
 import com.song.moja.util.FileUtils;
 
 
@@ -35,10 +36,10 @@ public class HTTPResult {
 			return get404Result();
 		}
 
-		File file = new File(HttpConstants.WEB_ROOT, uri);
+		File file = new File(Constance.WEB_ROOT, uri);
 		byte[] fileBytes = null;
 		try {
-			fileBytes = FileUtils.getBytesFromFile(file.getAbsolutePath());
+			fileBytes = FileUtils.getBytes(file.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 			fileBytes = get404Result();

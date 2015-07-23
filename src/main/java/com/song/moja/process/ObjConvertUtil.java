@@ -5,32 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.MessageLite;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-
 /**
- * 
- * <p>
- * 文件名称:ObjConvertUtil.java
- * <p>
- * <p>
- * 文件描述:本类描述
- * <p>
- * 版权所有:湖南省蓝蜻蜓网络科技有限公司版权所有(C)2015
- * </p>
- * <p>
- * 内容摘要:此类是转换使用的类
- * </p>
- * <p>
- * 其他说明:其它内容的说明
- * </p>
- * <p>
- * 完成日期:2015年6月9日下午3:33:34
- * </p>
- * <p>
- * 
- * @author
+ * 对象转换类
+ * @author 3gods.com
+ *
  */
 public class ObjConvertUtil<T> {
 	
@@ -39,4 +22,34 @@ public class ObjConvertUtil<T> {
 		return null;
 	}
 
+	//这个地方这个东西不对。
+	public static DBObject PB2DBObj(MessageLite ml) {
+//		if(null==ml){
+//			return null;
+//		}
+//		
+//		Map<FieldDescriptor, Object> map = ml.getAllFields();
+//		Map<String, Object> dbMap = new HashMap<String, Object>();
+//
+//		for (FieldDescriptor fd : map.keySet()) {
+//			dbMap.put(fd.getName(), map.get(fd));
+//		}
+//		return new BasicDBObject(dbMap);
+//		
+//		
+//		
+		return null;
+	}
+	
+	public static DBObject JSON2DBObj(Object obj){
+		//将obj转换成json，将json转换成map
+		if(obj==null){
+			return null;
+		}
+		String jsonStr = JSON.toJSONString(obj);
+		Map<String,Object> map = (Map<String,Object>)JSON.parse(jsonStr);
+		return new BasicDBObject(map);
+	}
+	
+	
 }

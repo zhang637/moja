@@ -1,32 +1,20 @@
 package com.song.moja.process;
 
+import java.util.Date;
 import java.util.List;
 
+
+
+
+import org.apache.commons.httpclient.util.DateUtil;
+import org.apache.commons.lang.time.DateUtils;
+
 import com.mongodb.DBObject;
-import com.song.moja.util.DateUtils;
 
 /**
  * 
- * <p>
- * 文件名称:DeliverMsg.java
- * <p>
- * <p>
- * 文件描述:本类描述
- * <p>
- * 版权所有:湖南省蓝蜻蜓网络科技有限公司版权所有(C)2015
- * </p>
- * <p>
- * 内容摘要:这个类是分发日志的，因为希望Mongodb可以做到批量存储，所以将要存到一个表中的数据集中存放
- * </p>
- * <p>
- * 其他说明:其它内容的说明
- * </p>
- * <p>
- * 完成日期:2015年6月10日上午9:22:32
- * </p>
- * <p>
- * 
- * @author
+ * @author 3gods.com
+ * 这里如何存表需要自己实现
  */
 public class DeliverMessage {
 
@@ -34,14 +22,15 @@ public class DeliverMessage {
 	//可自己根据日志类型，业务类型，操作时间等保存到不同的表
 	//这里简要的按照日志来的时候的时间存在表中
 	public static String getTableName(DBObject obj) {
-		String month = DateUtils.getCurrentMonth();
+//		String month = DateUtils.getCurrentMonth();
+		String month = DateUtil.formatDate(new Date(), "yyyy-MM");
 		
 		return month;
 	}
 	
 	
 	public static String getTableName(List<DBObject> list) {
-		String month = DateUtils.getCurrentMonth();
+		String month = DateUtil.formatDate(new Date(), "yyyy-MM");
 		
 		return month;
 	}

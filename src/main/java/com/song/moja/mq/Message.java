@@ -3,7 +3,11 @@ package com.song.moja.mq;
 import java.io.Serializable;
 
 import org.bson.types.ObjectId;
-
+/**
+ * 对客户端消息进行包装，添加额外属性，后续多样处理
+ * @author 3gods.com
+ * ok
+ */
 public class Message implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

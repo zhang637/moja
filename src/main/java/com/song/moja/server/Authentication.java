@@ -1,6 +1,10 @@
 package com.song.moja.server;
 
-
+/**
+ * 用于验证，比如在监控页面关闭系统时候加验证，连接mongodb等验证
+ * @author 3gods.com
+ *
+ */
 public class Authentication {
 	
 	private String username;

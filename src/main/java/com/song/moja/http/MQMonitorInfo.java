@@ -16,6 +16,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.http.impl.cookie.DateUtils;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
@@ -23,7 +24,6 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import com.song.moja.db.MongoUtil;
-import com.song.moja.util.DateUtils;
 import com.sun.tools.apt.resources.apt;
 
 /**
@@ -162,7 +162,7 @@ public class MQMonitorInfo implements Serializable {
 			// out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-			LOG.info("当前时间是" + DateUtils.getCurrentDate() + "发送队列监控数据出错!!!");
+			LOG.info("发送队列监控数据出错!!!");
 		}
 	}
 
@@ -186,7 +186,7 @@ public class MQMonitorInfo implements Serializable {
 			socketChannel.write(ByteBuffer.wrap(str.getBytes()));
 		} catch (IOException e) {
 			e.printStackTrace();
-			LOG.info("当前时间是" + DateUtils.getCurrentDate() + "发送队列监控数据出错!!!");
+			LOG.info("发送队列监控数据出错!!!");
 		}
 	}
 

@@ -9,14 +9,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import com.song.moja.consumer.MQConsumeThread;
 import com.song.moja.db.MongoConfig;
 import com.song.moja.db.MongoUtil;
-import com.song.moja.log.CleanLogThread;
-import com.song.moja.log.LoadLogHandler;
 import com.song.moja.log.LogConfig;
 import com.song.moja.monitor.MonitorHandler;
 import com.song.moja.mq.MQConfig;
+import com.song.moja.mq.MQConsumer;
 import com.song.moja.persistent.PersistThread;
 import com.song.moja.util.Utils;
 
@@ -61,7 +59,7 @@ public class ThreadManager<T> implements Closeable {
 		servicePool = Executors.newCachedThreadPool();
 		this.needRecovery = needRecovery;
 		if (needRecovery) {
-			new CleanLogThread<T>(mq, logConfig).start();
+//			new CleanLogThread<MessageTite>(mq, logConfig).start();
 		}
 
 		MongoUtil.init(new MongoConfig(config.props));
@@ -70,11 +68,11 @@ public class ThreadManager<T> implements Closeable {
 	public void start() throws Exception {
 		// 启动消费MQ的线程
 		for (int i = 0; i < mqConsumeNum; i++) {
-			servicePool.execute(new MQConsumeThread<T>(mq, mqConfig));
+			servicePool.execute(new MQConsumer<T>(mq, mqConfig));
 		}
 
 		// 启动定时扫描线程
-		servicePool.execute(new LoadLogHandler<T>(mqConfig, mq));
+//		servicePool.execute(new LoadLogHandler<T>(mqConfig, mq));
 
 	}
 
@@ -95,6 +93,10 @@ public class ThreadManager<T> implements Closeable {
 			tempList.clear();
 		}
 	}
+
+	
+
+	
 
 	public BlockingQueue<T> getMq() {
 		return mq;
@@ -139,6 +141,7 @@ public class ThreadManager<T> implements Closeable {
 	public int getPersistBatchSize() {
 		return persistBatchSize;
 	}
+
 
 	public List<T> getTempList() {
 		return tempList;

@@ -1,12 +1,10 @@
 package com.song.moja.monitor;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 
@@ -15,8 +13,14 @@ import org.apache.commons.lang.StringUtils;
 import com.song.moja.http.HTTPResult;
 import com.song.moja.http.HTTPUtils;
 import com.song.moja.server.ServerConfig;
+import com.song.moja.util.Constance;
 import com.song.moja.util.SocketUtil;
-
+/**
+ * 关于此线程监听8888端口响应监控队列请求
+ * 这个后面可能使用JMX实现 
+ * @author 3gods.com
+ *
+ */
 public class MonitorHandler extends Thread implements Closeable {
 
 	final ServerConfig config;
@@ -36,18 +40,17 @@ public class MonitorHandler extends Thread implements Closeable {
 		Socket socket = null;
 		try {
 			ss = new ServerSocket(monitorPort);
-			// 那个jafka中好像没有while true�?
-			while (true) {
+			while (!Thread.interrupted()) {
 				socket  = ss.accept();
 				
 				OutputStream out = socket.getOutputStream();
 				InputStream in = socket.getInputStream();
 
 				byte[] bys = SocketUtil.readBytesFromStream(in);
-				// 获取头信�?
+				// 获取头信息
 				byte[] proType = Arrays.copyOfRange(bys, 0, 4);
 				String proTypeStr = new String(proType, "UTF-8");
-				if (proTypeStr.equals("GET ") || proTypeStr.equals("POST")) {
+				if (proTypeStr.equals(Constance.REQUEST_GET) || proTypeStr.equals(Constance.REQUEST_POST)) {
 					String uri = HTTPUtils.parseUri(new String(bys));
 
 					byte[] result = null;

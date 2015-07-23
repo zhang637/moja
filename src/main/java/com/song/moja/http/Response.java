@@ -1,15 +1,17 @@
 package com.song.moja.http;
 
-import java.io.OutputStream;
-import java.io.IOException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-import javax.servlet.ServletResponse;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
+
+import com.song.moja.util.Constance;
 
 public class Response implements ServletResponse {
 
@@ -36,7 +38,7 @@ public class Response implements ServletResponse {
     FileInputStream fis = null;
     try {
       /* request.getUri has been replaced by request.getRequestURI */
-      File file = new File(HttpConstants.WEB_ROOT, uri);
+      File file = new File(Constance.WEB_ROOT, uri);
       fis = new FileInputStream(file);
       /*
          HTTP Response = Status-Line

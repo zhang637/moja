@@ -1,9 +1,13 @@
 package com.song.moja.mq;
-
 import java.util.Properties;
-
 import com.song.moja.server.Config;
 import com.song.moja.util.Utils;
+
+/**
+ * 关于MQ的一些配置获取
+ * @author 3gods.com
+ * ok
+ */
 public class MQConfig extends Config{
 	
 	public MQConfig(Properties props) {

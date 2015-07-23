@@ -14,6 +14,7 @@ import java.util.Arrays;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.song.moja.util.Constance;
 import com.song.moja.util.PropertyUtil;
 
 
@@ -101,7 +102,7 @@ public class HTTPUtils {
 			// out.write(httpHeader);
 			socketChannel.write(ByteBuffer.wrap(httpHeader));
 
-			File file = new File(HttpConstants.WEB_ROOT, uri);
+			File file = new File(Constance.WEB_ROOT, uri);
 			System.out.println("HTTP请求HTML页面，文件路径是"+file.getAbsolutePath());
 			LOG.error("HTTP请求HTML页面，文件路径是"+file.getAbsolutePath());
 			fis = new FileInputStream(file);
@@ -143,7 +144,7 @@ public class HTTPUtils {
 			return ;
 		}
 
-		File file = new File(HttpConstants.WEB_ROOT, uri);
+		File file = new File(Constance.WEB_ROOT, uri);
 		FileInputStream fis = null;
 		byte[] bytes = new byte[1024];
 

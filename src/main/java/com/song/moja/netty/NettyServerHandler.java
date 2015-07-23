@@ -1,23 +1,13 @@
 package com.song.moja.netty;
 
-import static io.netty.handler.codec.http.HttpHeaders.Names.CONNECTION;
-import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_LENGTH;
-import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
-import static io.netty.handler.codec.http.HttpResponseStatus.CONTINUE;
-import static io.netty.handler.codec.http.HttpResponseStatus.OK;
-import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import com.alibaba.fastjson.JSON;
 import com.song.moja.log.LogConfig;
-import com.song.moja.mq.Message;
 import com.song.moja.persistent.PersistThread;
 import com.song.moja.serialize.Serialization;
 import com.song.moja.server.ServerConfig;
@@ -35,13 +25,16 @@ import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.LastHttpContent;
-import io.netty.util.CharsetUtil;
 
+/**
+ * 负责JSON格式的日志的逻辑处理
+ * @author 3gods.com
+ *
+ * @param <T>
+ */
 public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 
-	final ThreadManager threadManager;
+	final ThreadManager<T> threadManager;
 	final ServerConfig config;
 	final long enqueueTimeoutMs;
 
@@ -66,13 +59,13 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 		this.maxMessageSize = config.getMaxMessageSize();
 	}
 
-	// 这种是JSON格式的
+	//这种是JSON格式的
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object obj)
 			throws Exception {
 		byte[] bys = Serialization.serialize(obj);
 		if(bys.length>maxMessageSize){
-			throw new IllegalArgumentException("调用端发送的消息过大!!!长度是:"+bys.length+obj);
+			throw new IllegalArgumentException("客户端发送的消息过大!!!长度是:"+bys.length);
 		}
 		
 		T data = (T) obj;
@@ -106,7 +99,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 			tempList.clear();
 		}
 		// 返回结果
-		//将对象转化成json，然后字符串返回
+		//将对象转化成json，然后返回
 		String resultMsgStr = JSON.toJSONString(resultMsg, true);
 		ctx.channel().writeAndFlush(resultMsgStr.getBytes());
 	}
@@ -115,7 +108,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
 		cause.printStackTrace();
-		ctx.close(); // File Templates.
+		ctx.close(); 
 	}
 
 	protected void messageReceived(ChannelHandlerContext arg0, Object arg1)

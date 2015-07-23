@@ -14,7 +14,7 @@ public class MongoConfig extends Config {
 	}
 
 	public String getIp() {
-		return Utils.getString(this.props, "mongo.ip2", "127.0.0.111");
+		return Utils.getString(this.props, "mongo.ip2", "127.0.0.1");
 	}
 	public int getPort() {
 		return Utils.getInt(props, "mongo.port2", 27017);

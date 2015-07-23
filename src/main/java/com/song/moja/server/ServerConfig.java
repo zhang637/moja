@@ -3,19 +3,19 @@ package com.song.moja.server;
 import java.util.Properties;
 
 import com.song.moja.util.Utils;
-
+/**
+ * 关于服务器Server类的一些配置
+ * @author 3gods.com
+ *
+ */
 public class ServerConfig extends Config {
 
 	public ServerConfig(Properties props) {
 		super(props);
 	}
-
+	
 	public int getPort() {
 		return Utils.getInt(props, "server.port", 8088);
-	}
-
-	public String getHostName() {
-		return Utils.getString(props, "hostname", null);
 	}
 
 	public int getMaxConnections() {
@@ -45,29 +45,6 @@ public class ServerConfig extends Config {
 		return Utils.getString(props, "log.dir");
 	}
 
-	/**
-	 * the number of worker threads that the server uses for handling all client
-	 * requests
-	 */
-	public int getNumThreads() {
-		return Utils.getIntInRange(props, "num.threads", Runtime.getRuntime()
-				.availableProcessors(), 1, Integer.MAX_VALUE);
-	}
-
-	/**
-	 * the maximum number of bytes in a socket request????
-	 */
-	public int getMaxSocketRequestSize() {
-		return Utils.getIntInRange(props, "max.socket.request.bytes",
-				100 * 1024 * 1024, 1, Integer.MAX_VALUE);
-	}
-
-	/**
-	 * the broker id for this server
-	 */
-	public int getBrokerId() {
-		return Utils.getIntInRange(props, "brokerid", -1, 0, Integer.MAX_VALUE);
-	}
 
 	public int getMQInitSize() {
 		return Utils.getInt(props, "mq.init.size", 5000);
@@ -107,6 +84,10 @@ public class ServerConfig extends Config {
 
 	public int getPersistBatchSize() {
 		return Utils.getInt(props, "persist.batch.size", 10000);
+	}
+
+	public String getProtoFileDir() {
+		return Utils.getString(props, "proto.file.dir", "proto");
 	}
 
 }
