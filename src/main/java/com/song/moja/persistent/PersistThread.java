@@ -12,12 +12,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.log4j.Logger;
 
 import com.song.moja.log.LogConfig;
-import com.song.moja.mq.Message;
 import com.song.moja.serialize.FastJsonSerializer;
 import com.song.moja.util.Utils;
 
 /**
  * 持久化的线程
+ * 
  * @author 3gods.com
  *
  */
@@ -26,15 +26,11 @@ public class PersistThread<T> extends Thread {
 
 	final BlockingQueue<T> mq;
 	final List<T> tempList;
-
 	final LogConfig config;
-
 	private final AtomicInteger logIndex = new AtomicInteger(0);
-
 	final int logMaxSize;
 
-	public PersistThread(BlockingQueue<T> mq, List<T> tempList,
-			LogConfig logConfig) {
+	public PersistThread(BlockingQueue<T> mq, List<T> tempList, LogConfig logConfig) {
 		this.mq = mq;
 		this.tempList = tempList;
 		this.config = logConfig;
@@ -53,19 +49,17 @@ public class PersistThread<T> extends Thread {
 				out = isFile2Big(file, logMaxSize, out);
 				T log = tempList.get(i);
 				byte[] bys = FastJsonSerializer.serialize(log);
-				//写入文件
+				// 写入文件
 				out.write(bys);
 				tempList.remove(i);
 			}
 			tempList.clear();
 			out.close();
-
 		} catch (IOException e) {
 			e.printStackTrace();
-			LOG.error("将mq中日志写入到文件出错，正在将剩下的日志，大小为:" + tempList.size() + "写回到mq"
-					+ e.getMessage(), e);
+			LOG.error("将mq中日志写入到文件出错，正在将剩下的日志，大小为:" + tempList.size() + "写回到mq" + e.getMessage(), e);
 			mq.addAll(tempList);
-		} 
+		}
 	}
 
 	private OutputStream isFile2Big(File file, int logMaxSize, OutputStream out) {
@@ -73,11 +67,9 @@ public class PersistThread<T> extends Thread {
 		long maxFileSize = 1024L * 1024 * 1024 * logMaxSize;
 
 		if (fileLength >= maxFileSize) {
-			String filePath = file.getAbsolutePath()
-					+ logIndex.getAndIncrement();
+			String filePath = file.getAbsolutePath() + logIndex.getAndIncrement();
 			file = new File(filePath);
-			LOG.error("持久化日志文件" + file.getAbsolutePath() + "过大，生成新的日志文件"
-					+ filePath);
+			LOG.error("持久化日志文件" + file.getAbsolutePath() + "过大，生成新的日志文件" + filePath);
 			OutputStream output = null;
 			try {
 				output = new FileOutputStream(file, true);

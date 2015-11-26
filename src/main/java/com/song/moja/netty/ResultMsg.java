@@ -2,15 +2,12 @@ package com.song.moja.netty;
 
 import java.io.Serializable;
 
-public  class ResultMsg implements Serializable {
-
+public class ResultMsg implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int errCode;
-	
 	private String errMsg;
 
-	
 	public int getErrCode() {
 		return errCode;
 	}
@@ -26,5 +23,5 @@ public  class ResultMsg implements Serializable {
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
 	}
-	
+
 }

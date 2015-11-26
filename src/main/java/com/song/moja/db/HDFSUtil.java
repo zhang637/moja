@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -23,8 +21,6 @@ import org.apache.hadoop.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import com.song.moja.util.PropertyUtil;
-
-
 
 public class HDFSUtil {
 	private HDFSUtil() {
@@ -39,33 +35,24 @@ public class HDFSUtil {
 		// 端口为HDFS默认的，建议不要修改
 		conf.set("mapred.job.tracker", PropertyUtil.get("mapred.job.tracker"));
 		conf.set("fs.default.name", PropertyUtil.get("fs.default.name"));
-		conf.setBoolean("dfs.support.append",
-				Boolean.parseBoolean(PropertyUtil.get("dfs.support.append")));
+		conf.setBoolean("dfs.support.append", Boolean.parseBoolean(PropertyUtil.get("dfs.support.append")));
 		// conf.set("fs.file.impl",
 		// org.apache.hadoop.fs.LocalFileSystem.class.getName() );
-		conf.set("fs.hdfs.impl",
-				org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
+		conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
 		HDFSUtil.conf = conf;
 		// 在win上面用eclipse开发需要设置
 		String os = System.getProperty("os.name");
 		if (os.toLowerCase().startsWith("win")) {
-			System.setProperty("hadoop.home.dir",
-					PropertyUtil.get("hadoop.home.dir"));
+			System.setProperty("hadoop.home.dir", PropertyUtil.get("hadoop.home.dir"));
 		}
 
 	}
 
 	/**
 	 * 
-	 * @author：
-	 * @date：2015年6月17日
-	 * @Description：判断文件夹是否存在
-	 * @param fileName
-	 * @return
-	 * @throws Exception
-	 *             : 返回结果描述
-	 * @return boolean: 返回值类型
-	 * @throws
+	 * @author： @date：2015年6月17日 @Description：判断文件夹是否存在 @param
+	 * fileName @return @throws Exception : 返回结果描述 @return boolean:
+	 * 返回值类型 @throws
 	 */
 	public static boolean isDirExist(String fileName) throws Exception {
 		FileSystem fs = FileSystem.get(URI.create("/"), conf);
@@ -98,8 +85,7 @@ public class HDFSUtil {
 		}
 	}
 
-	public static boolean createFile(String file, String content,
-			boolean overwrite) throws Exception {
+	public static boolean createFile(String file, String content, boolean overwrite) throws Exception {
 		boolean flag = false;
 		FileSystem fs = null;
 		FSDataOutputStream os = null;
@@ -121,15 +107,14 @@ public class HDFSUtil {
 		return flag;
 	}
 
-	public void traverse(FileSystem fs, String file, PathFilter pathFilter,
-			HDFSFileHandler handler) throws Exception {
+	public void traverse(FileSystem fs, String file, PathFilter pathFilter, HDFSFileHandler handler) throws Exception {
 		Path path = new Path(file);
 		_traverse(fs, path, pathFilter, handler);
 		fs.close();
 	}
 
-	private void _traverse(FileSystem fs, Path path, PathFilter pathFilter,
-			HDFSFileHandler handler) throws IOException {
+	private void _traverse(FileSystem fs, Path path, PathFilter pathFilter, HDFSFileHandler handler)
+			throws IOException {
 		if (fs.isFile(path)) {
 			handler.handler(path);
 		} else {
@@ -214,8 +199,7 @@ public class HDFSUtil {
 		return os.toString();
 	}
 
-	public static boolean copyFromLocal(String src, String dst, boolean delSrc,
-			boolean overwrite) throws Exception {
+	public static boolean copyFromLocal(String src, String dst, boolean delSrc, boolean overwrite) throws Exception {
 		boolean flag = false;
 		FileSystem fs = null;
 		try {
@@ -240,12 +224,9 @@ public class HDFSUtil {
 	}
 
 	// 将字符串添加到文件
-	public static boolean appendStrToFile(String srcFile, String appendStr)
-			throws Exception {
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy",
-				"NEVER");
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable",
-				"true");
+	public static boolean appendStrToFile(String srcFile, String appendStr) throws Exception {
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy", "NEVER");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable", "true");
 		FileSystem fs = null;
 		FSDataOutputStream out = null;
 		InputStream in = null;
@@ -254,14 +235,12 @@ public class HDFSUtil {
 
 			out = fs.append(new Path(srcFile));
 			appendStr = appendStr + "\r\n";
-			in = new BufferedInputStream(new ByteArrayInputStream(
-					appendStr.getBytes()));
+			in = new BufferedInputStream(new ByteArrayInputStream(appendStr.getBytes()));
 			IOUtils.copyBytes(in, out, 4096);
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOG.error("添加字符串" + appendStr + "到HDFS文件" + srcFile + "出错！", e);
-			throw new Exception("添加字符串" + appendStr + "到HDFS文件" + srcFile
-					+ "出错！", e);
+			throw new Exception("添加字符串" + appendStr + "到HDFS文件" + srcFile + "出错！", e);
 		} finally {
 			out.close();
 			IOUtils.closeStream(in);
@@ -271,14 +250,11 @@ public class HDFSUtil {
 	}
 
 	// 将本地文件添加到hdfs
-	public static boolean app2File(String srcFile, String appendFile)
-			throws Exception {
+	public static boolean app2File(String srcFile, String appendFile) throws Exception {
 		boolean flag = false;
 		// 先读出文件内容，然后2个合并，然后将原来文件删除，然后创建文件
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy",
-				"NEVER");
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable",
-				"true");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy", "NEVER");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable", "true");
 
 		FileSystem fs = null;
 		FSDataOutputStream out = null;
@@ -293,8 +269,7 @@ public class HDFSUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOG.error("添加文件" + appendFile + "到HDFS文件" + srcFile + "出错！", e);
-			throw new Exception("添加文件" + appendFile + "到HDFS文件" + srcFile
-					+ "出错！", e);
+			throw new Exception("添加文件" + appendFile + "到HDFS文件" + srcFile + "出错！", e);
 		} finally {
 			out.close();
 			IOUtils.closeStream(in);
@@ -308,12 +283,9 @@ public class HDFSUtil {
 		// rm("hdfs://vm131:9000//user/Administrator/usr/helloworld", false);
 	}
 
-	public static <T> boolean writeLogList2File(List<T> logList,
-			String absolutePath) {
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy",
-				"NEVER");
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable",
-				"true");
+	public static <T> boolean writeLogList2File(List<T> logList, String absolutePath) {
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy", "NEVER");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable", "true");
 		FileSystem fs = null;
 		FSDataOutputStream out = null;
 		InputStream in = null;
@@ -324,8 +296,8 @@ public class HDFSUtil {
 
 			// appendStr = appendStr +"\r\n" ;
 			for (T commonLog : logList) {
-//				in = new BufferedInputStream(new ByteArrayInputStream(
-//						commonLog.toByteArray()));
+				// in = new BufferedInputStream(new ByteArrayInputStream(
+				// commonLog.toByteArray()));
 
 				IOUtils.copyBytes(in, out, 4096);
 			}
@@ -346,10 +318,8 @@ public class HDFSUtil {
 	}
 
 	public static boolean saveByteArr(byte[] byteArr, String absolutePath) {
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy",
-				"NEVER");
-		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable",
-				"true");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.policy", "NEVER");
+		conf.set("dfs.client.block.write.replace-datanode-on-failure.enable", "true");
 		FileSystem fs = null;
 		FSDataOutputStream out = null;
 		InputStream in = null;
@@ -359,8 +329,7 @@ public class HDFSUtil {
 			out = fs.append(new Path(absolutePath));
 
 			// appendStr = appendStr +"\r\n" ;
-			in = new BufferedInputStream(new ByteArrayInputStream(
-					byteArr));
+			in = new BufferedInputStream(new ByteArrayInputStream(byteArr));
 
 			IOUtils.copyBytes(in, out, 4096);
 		} catch (Exception e) {

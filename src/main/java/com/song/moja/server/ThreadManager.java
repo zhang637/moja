@@ -20,14 +20,11 @@ import com.song.moja.util.Utils;
 
 public class ThreadManager<T> implements Closeable {
 	final ServerConfig config;
-
 	final File logDir;
-
 	final boolean needRecovery;
 
 	// 这个锁是在创建日志文件，删除日志文件时候使用,同步加锁，暂未实现
 	private final Object logCreationLock = new Object();
-
 	private BlockingQueue<T> mq;
 	// 响应查看监控队列的线程
 	private MonitorHandler monitorHandler;
@@ -44,8 +41,7 @@ public class ThreadManager<T> implements Closeable {
 
 	final int mqConsumeNum;
 
-	public ThreadManager(ServerConfig config, boolean needRecovery)
-			throws Exception {
+	public ThreadManager(ServerConfig config, boolean needRecovery) throws Exception {
 		this.config = config;
 		this.logDir = Utils.getCanonicalFile(new File(config.getLogDir()));
 
@@ -72,8 +68,7 @@ public class ThreadManager<T> implements Closeable {
 		}
 
 		// 启动定时扫描线程
-//		servicePool.execute(new LoadLogHandler<T>(mqConfig, mq));
-
+		// servicePool.execute(new LoadLogHandler<T>(mqConfig, mq));
 	}
 
 	public void close() {
@@ -93,10 +88,6 @@ public class ThreadManager<T> implements Closeable {
 			tempList.clear();
 		}
 	}
-
-	
-
-	
 
 	public BlockingQueue<T> getMq() {
 		return mq;
@@ -142,7 +133,6 @@ public class ThreadManager<T> implements Closeable {
 		return persistBatchSize;
 	}
 
-
 	public List<T> getTempList() {
 		return tempList;
 	}
@@ -158,5 +148,5 @@ public class ThreadManager<T> implements Closeable {
 	public int getMqConsumeNum() {
 		return mqConsumeNum;
 	}
-	
+
 }

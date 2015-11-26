@@ -11,24 +11,21 @@ import java.util.concurrent.Executors;
 
 import com.song.moja.util.SocketUtil;
 
-
 public class ServerTest {
 
 	public static void main(String[] args) {
-
-		ExecutorService servicePool = Executors.newFixedThreadPool(Runtime
-				.getRuntime().availableProcessors());
+		ExecutorService servicePool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
 		ServerSocket ss = null;
 		Socket client = null;
-		
+
 		int port = 2099;
 		try {
 			ss = new ServerSocket(port);
-			System.out.println("启动服务器端成功!!!当前服务端口号是"+port);
+			System.out.println("启动服务器端成功!!!当前服务端口号是" + port);
 			while (true) {
 				client = ss.accept();
-				servicePool.execute(new SocketHandler(client,port));
+				servicePool.execute(new SocketHandler(client, port));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -40,10 +37,10 @@ public class ServerTest {
 class SocketHandler implements Runnable {
 
 	private Socket client;
-	
+
 	private int port;
 
-	public SocketHandler(Socket client,int port) {
+	public SocketHandler(Socket client, int port) {
 		this.client = client;
 		this.port = port;
 	}
@@ -61,9 +58,9 @@ class SocketHandler implements Runnable {
 
 				if (null != temp && temp.length > 0) {
 					String proTypeStr = new String(temp);
-					System.out.println("接收到客户端消息" + proTypeStr+"当前服务器端口是"+port);
-					
-					out.write(("success"+port).getBytes());
+					System.out.println("接收到客户端消息" + proTypeStr + "当前服务器端口是" + port);
+
+					out.write(("success" + port).getBytes());
 				}
 			}
 		} catch (SocketTimeoutException e1) {

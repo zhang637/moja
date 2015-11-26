@@ -2,6 +2,12 @@ package com.song.moja.netty;
 
 import java.io.Closeable;
 
+import org.apache.log4j.Logger;
+
+import com.song.moja.server.ServerConfig;
+import com.song.moja.server.ThreadManager;
+import com.song.moja.util.Constance;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
@@ -9,12 +15,6 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-
-import org.apache.log4j.Logger;
-
-import com.song.moja.server.ServerConfig;
-import com.song.moja.server.ThreadManager;
-import com.song.moja.util.Constance;
 /**
  * Netty服务器类，负责监听请求
  * @author 3gods.com
@@ -53,10 +53,8 @@ public class NettyServer<T> extends Thread implements Closeable {
 			ChannelHandler childHandler = null;
 			if(logTransferType.equalsIgnoreCase(Constance.LOG_TYPE_PB)){
 				childHandler = new ProtobufNettyServerInitializer<T>(threadManager,config);
-				
 			}else if(logTransferType.equalsIgnoreCase(Constance.LOG_TYPE_JSON)){
 				childHandler = new NettyServerInitializer(threadManager,config);
-				
 			}else{
 				throw new IllegalArgumentException("不支持的日志传输格式"+logTransferType);
 			}
@@ -72,7 +70,6 @@ public class NettyServer<T> extends Thread implements Closeable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
 		} finally {
 			bossGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();

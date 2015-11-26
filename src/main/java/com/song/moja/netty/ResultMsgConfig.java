@@ -21,5 +21,4 @@ public class ResultMsgConfig extends Config{
 	public int getSuccCode() {
 		return Utils.getInt(props, "success.code",0);
 	}
-	
 }

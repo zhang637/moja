@@ -1,6 +1,5 @@
 package com.song.moja.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,8 +63,7 @@ public class SocketUtil {
 	// 从流中读取byte[]
 	// 这个方法是阻塞的。也就是想死机了一下在这里不动
 	// 但是设置了socketTimeOut就行了，会抛出异常。
-	public static byte[] readBytesFromStream2(InputStream in)
-			throws IOException {
+	public static byte[] readBytesFromStream2(InputStream in) throws IOException {
 		byte len[] = new byte[1024];
 		int count = 0;
 		// while((len=object.read())!=-1){
@@ -83,18 +81,10 @@ public class SocketUtil {
 
 	/**
 	 * 
-	 * @author：
-	 * @date：2015年5月14日
-	 * @Description：将字符串写到输出流
-	 * @param str
-	 * @param out
-	 * @throws IOException
-	 *             : 返回结果描述
-	 * @return void: 返回值类型
-	 * @throws
+	 * @author： @date：2015年5月14日 @Description：将字符串写到输出流 @param str @param
+	 * out @throws IOException : 返回结果描述 @return void: 返回值类型 @throws
 	 */
-	public static void writeStr2Stream(String str, OutputStream out)
-			throws IOException {
+	public static void writeStr2Stream(String str, OutputStream out) throws IOException {
 		try {
 			BufferedOutputStream writer = new BufferedOutputStream(out);
 			if (str != null && str.getBytes().length > 0) {
@@ -109,15 +99,8 @@ public class SocketUtil {
 
 	/**
 	 * 
-	 * @author：
-	 * @date：2015年5月14日
-	 * @Description：从输入流中读字符串
-	 * @param in
-	 * @return
-	 * @throws IOException
-	 *             : 返回结果描述
-	 * @return String: 返回值类型
-	 * @throws
+	 * @author： @date：2015年5月14日 @Description：从输入流中读字符串 @param
+	 * in @return @throws IOException : 返回结果描述 @return String: 返回值类型 @throws
 	 */
 	public static String readStrFromStream(InputStream in) throws IOException {
 		StringBuffer result = new StringBuffer("");
