@@ -12,8 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.log4j.Logger;
 
 import com.song.moja.log.LogConfig;
-import com.song.moja.serialize.FastJsonSerializer;
-import com.song.moja.util.Utils;
 
 /**
  * 持久化的线程
@@ -39,27 +37,29 @@ public class PersistThread<T> extends Thread {
 
 	@Override
 	public void run() {
-		File file = null;
-		OutputStream out = null;
-		try {
-			file = Utils.getCanonicalFile(new File(config.getDir()));
-			out = new FileOutputStream(file, true);
+		// File file = null;
+		// OutputStream out = null;
+		// try {
+		// file = Utils.getCanonicalFile(new File(config.getDir()));
+		// out = new FileOutputStream(file, true);
 
-			for (int i = 0; i < tempList.size(); i++) {
-				out = isFile2Big(file, logMaxSize, out);
-				T log = tempList.get(i);
-				byte[] bys = FastJsonSerializer.serialize(log);
-				// 写入文件
-				out.write(bys);
-				tempList.remove(i);
-			}
-			tempList.clear();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			LOG.error("将mq中日志写入到文件出错，正在将剩下的日志，大小为:" + tempList.size() + "写回到mq" + e.getMessage(), e);
-			mq.addAll(tempList);
+		for (int i = 0; i < tempList.size(); i++) {
+			System.out.println("--------------------" + tempList.get(i));
+			// out = isFile2Big(file, logMaxSize, out);
+			// T log = tempList.get(i);
+			// byte[] bys = FastJsonSerializer.serialize(log);
+			// // 写入文件
+			// out.write(bys);
+			// tempList.remove(i);
 		}
+		// tempList.clear();
+		// out.close();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// LOG.error("将mq中日志写入到文件出错，正在将剩下的日志，大小为:" + tempList.size() + "写回到mq" +
+		// e.getMessage(), e);
+		// mq.addAll(tempList);
+		// }
 	}
 
 	private OutputStream isFile2Big(File file, int logMaxSize, OutputStream out) {

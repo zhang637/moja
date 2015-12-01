@@ -6,7 +6,10 @@ import com.song.moja.server.ThreadManager;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 
 /**
  * 负责JSON格式日志的编解码
@@ -26,7 +29,8 @@ public class NettyServerInitializer<T> extends ChannelInitializer<SocketChannel>
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline = ch.pipeline();
-		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
+		pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8), new LineBasedFrameDecoder(1024),
+				new StringDecoder(CharsetUtil.UTF_8));
 		// 业务逻辑处理类
 		pipeline.addLast("handler", new NettyServerHandler<T>(threadManager, config));
 	}

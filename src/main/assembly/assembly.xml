@@ -27,6 +27,10 @@
 				<exclude>META-INF/</exclude>
 			</excludes>
 		</fileSet>
+		<fileSet>
+			<directory>proto</directory>
+			<outputDirectory>proto</outputDirectory>
+		</fileSet>
 	</fileSets>
 	<!-- files> <file> <source>src/main/resources/applicationContext.xml</source> 
 		<outputDirectory>conf</outputDirectory> <filtered>true</filtered> </file> 

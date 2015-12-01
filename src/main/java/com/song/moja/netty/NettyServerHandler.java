@@ -22,7 +22,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  *
  * @param <T>
  */
-public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
+public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
 	final ThreadManager<T> threadManager;
 	final ServerConfig config;
 	final long enqueueTimeoutMs;
@@ -32,10 +32,9 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 	final List<T> tempList;
 	final int maxMessageSize;
 
-	public NettyServerHandler(ThreadManager threadManager, ServerConfig config) {
+	public NettyServerHandler(ThreadManager<T> threadManager, ServerConfig config) {
 		this.threadManager = threadManager;
 		this.config = config;
-
 		this.enqueueTimeoutMs = config.getEnqueueTimeoutMs();
 		this.resultMsgConfig = new ResultMsgConfig(config.props);
 		this.persistBatchSize = config.getPersistBatchSize();
@@ -43,9 +42,8 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 		this.maxMessageSize = config.getMaxMessageSize();
 	}
 
-	// 这种是JSON格式的
 	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object obj) throws Exception {
+	public void channelRead(ChannelHandlerContext ctx, Object obj) throws Exception {// 这种是JSON格式的
 		byte[] bys = Serialization.serialize(obj);
 		if (bys.length > maxMessageSize) {
 			throw new IllegalArgumentException("客户端发送的消息过大!!!长度是:" + bys.length);
@@ -54,7 +52,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 		T data = (T) obj;
 		BlockingQueue<T> queue = threadManager.getMq();
 		boolean added = false;
-		// 将JSON转换成实体类
+		
 		if (data != null) {
 			try {
 				if (enqueueTimeoutMs == 0) {
@@ -70,7 +68,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 			}
 		}
 		ResultMsg resultMsg = new ResultMsg();
-		// 这里返回给对方的消息，由谁定义了？
+		// 这里返回给对方的消息，由谁定义了
 		if (added) {
 			resultMsg.setErrCode(resultMsgConfig.getSuccCode());
 			resultMsg.setErrMsg(resultMsgConfig.getSuccMsg());
@@ -79,10 +77,10 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler<T> {
 			new PersistThread<T>(queue, tempList, new LogConfig(config.props)).start();
 			tempList.clear();
 		}
-		// 返回结果
 		// 将对象转化成json，然后返回
 		String resultMsgStr = JSON.toJSONString(resultMsg, true);
-		ctx.channel().writeAndFlush(resultMsgStr.getBytes());
+		System.out.println(resultMsgStr);
+		ctx.writeAndFlush(resultMsgStr.getBytes());
 	}
 
 	@Override

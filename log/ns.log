@@ -1,0 +1,13 @@
+2015-11-28 00:11:31,963  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-28 00:11:32,122  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-28 00:11:32,328  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-28 00:12:17,687  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-28 00:12:17,817  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-28 00:12:18,025  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-28 00:12:46,826  INFO [Server.java:74] - 关闭日志服务器!!!
+2015-11-28 00:12:46,827  INFO [NettyServer.java:77] - 日志服务器关闭，释放占用端口8088
+2015-11-28 00:12:46,839  INFO [Server.java:86] - 关闭日志系统完毕!!!
+2015-11-28 00:12:46,841  WARN [NettyServer.java:73] - PHP日志服务器挂掉!!!
+2015-11-28 00:13:40,941  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-28 00:13:41,031  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-28 00:13:41,229  INFO [NettyServer.java:64] - NettyServer启动8088

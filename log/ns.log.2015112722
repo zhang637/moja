@@ -1,0 +1,149 @@
+2015-11-27 22:19:36,491  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:19:36,641  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:19:36,888  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:19:47,754  WARN [Slf4JLogger.java:151] - Failed to initialize a channel. Closing: [id: 0x59e97172, /127.0.0.1:53878 => /127.0.0.1:8088]
+java.lang.IllegalStateException: cannot determine the type of the type parameter 'T': class com.song.moja.netty.NettyServerHandler
+	at io.netty.util.internal.TypeParameterMatcher.fail(TypeParameterMatcher.java:171)
+	at io.netty.util.internal.TypeParameterMatcher.find0(TypeParameterMatcher.java:165)
+	at io.netty.util.internal.TypeParameterMatcher.find(TypeParameterMatcher.java:93)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:65)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:55)
+	at com.song.moja.netty.NettyServerHandler.<init>(NettyServerHandler.java:35)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:31)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:1)
+	at io.netty.channel.ChannelInitializer.channelRegistered(ChannelInitializer.java:69)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelRegisteredNow(ChannelHandlerInvokerUtil.java:30)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRegistered(DefaultChannelHandlerInvoker.java:49)
+	at io.netty.channel.DefaultChannelHandlerContext.fireChannelRegistered(DefaultChannelHandlerContext.java:285)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRegistered(DefaultChannelPipeline.java:801)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:427)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.access$100(AbstractChannel.java:369)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$1.run(AbstractChannel.java:403)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:318)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:794)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-27 22:20:23,703  INFO [Server.java:74] - 关闭日志服务器!!!
+2015-11-27 22:20:23,703  INFO [NettyServer.java:77] - 日志服务器关闭，释放占用端口8088
+2015-11-27 22:20:23,706  WARN [NettyServer.java:73] - PHP日志服务器挂掉!!!
+2015-11-27 22:20:23,706  WARN [Moja.java:73] - Shutdown in progress
+java.lang.IllegalStateException: Shutdown in progress
+	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:82)
+	at java.lang.Runtime.removeShutdownHook(Runtime.java:239)
+	at com.song.moja.server.Moja.close(Moja.java:71)
+	at com.song.moja.server.Moja.main(Moja.java:32)
+2015-11-27 22:20:23,706  INFO [Server.java:86] - 关闭日志系统完毕!!!
+2015-11-27 22:20:27,290  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:20:27,380  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:20:27,549  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:20:31,451  WARN [Slf4JLogger.java:151] - Failed to initialize a channel. Closing: [id: 0x61c83fd6, /127.0.0.1:53896 => /127.0.0.1:8088]
+java.lang.IllegalStateException: cannot determine the type of the type parameter 'T': class com.song.moja.netty.NettyServerHandler
+	at io.netty.util.internal.TypeParameterMatcher.fail(TypeParameterMatcher.java:171)
+	at io.netty.util.internal.TypeParameterMatcher.find0(TypeParameterMatcher.java:165)
+	at io.netty.util.internal.TypeParameterMatcher.find(TypeParameterMatcher.java:93)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:65)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:55)
+	at com.song.moja.netty.NettyServerHandler.<init>(NettyServerHandler.java:35)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:31)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:1)
+	at io.netty.channel.ChannelInitializer.channelRegistered(ChannelInitializer.java:69)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelRegisteredNow(ChannelHandlerInvokerUtil.java:30)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRegistered(DefaultChannelHandlerInvoker.java:49)
+	at io.netty.channel.DefaultChannelHandlerContext.fireChannelRegistered(DefaultChannelHandlerContext.java:285)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRegistered(DefaultChannelPipeline.java:801)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:427)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.access$100(AbstractChannel.java:369)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$1.run(AbstractChannel.java:403)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:318)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:794)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-27 22:21:12,449  INFO [Server.java:74] - 关闭日志服务器!!!
+2015-11-27 22:21:12,450  INFO [NettyServer.java:77] - 日志服务器关闭，释放占用端口8088
+2015-11-27 22:21:12,451  WARN [NettyServer.java:73] - PHP日志服务器挂掉!!!
+2015-11-27 22:21:12,452  INFO [Server.java:86] - 关闭日志系统完毕!!!
+2015-11-27 22:21:50,999  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:21:51,143  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:21:51,316  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:21:56,489  INFO [Server.java:74] - 关闭日志服务器!!!
+2015-11-27 22:21:56,489  INFO [NettyServer.java:77] - 日志服务器关闭，释放占用端口8088
+2015-11-27 22:21:56,495  WARN [NettyServer.java:73] - PHP日志服务器挂掉!!!
+2015-11-27 22:21:56,496  INFO [Server.java:86] - 关闭日志系统完毕!!!
+2015-11-27 22:22:12,575  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:22:12,791  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:22:13,096  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:22:21,460  WARN [Slf4JLogger.java:151] - Failed to initialize a channel. Closing: [id: 0x08ed62fc, /127.0.0.1:53936 => /127.0.0.1:8088]
+java.lang.IllegalStateException: cannot determine the type of the type parameter 'T': class com.song.moja.netty.NettyServerHandler
+	at io.netty.util.internal.TypeParameterMatcher.fail(TypeParameterMatcher.java:171)
+	at io.netty.util.internal.TypeParameterMatcher.find0(TypeParameterMatcher.java:165)
+	at io.netty.util.internal.TypeParameterMatcher.find(TypeParameterMatcher.java:93)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:65)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:55)
+	at com.song.moja.netty.NettyServerHandler.<init>(NettyServerHandler.java:35)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:31)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:1)
+	at io.netty.channel.ChannelInitializer.channelRegistered(ChannelInitializer.java:69)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelRegisteredNow(ChannelHandlerInvokerUtil.java:30)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRegistered(DefaultChannelHandlerInvoker.java:49)
+	at io.netty.channel.DefaultChannelHandlerContext.fireChannelRegistered(DefaultChannelHandlerContext.java:285)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRegistered(DefaultChannelPipeline.java:801)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:427)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.access$100(AbstractChannel.java:369)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$1.run(AbstractChannel.java:403)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:318)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:794)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-27 22:23:01,970  WARN [Slf4JLogger.java:151] - Failed to initialize a channel. Closing: [id: 0x7006ec05, /127.0.0.1:53943 => /127.0.0.1:8088]
+java.lang.IllegalStateException: cannot determine the type of the type parameter 'T': class com.song.moja.netty.NettyServerHandler
+	at io.netty.util.internal.TypeParameterMatcher.fail(TypeParameterMatcher.java:171)
+	at io.netty.util.internal.TypeParameterMatcher.find0(TypeParameterMatcher.java:165)
+	at io.netty.util.internal.TypeParameterMatcher.find(TypeParameterMatcher.java:93)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:65)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:55)
+	at com.song.moja.netty.NettyServerHandler.<init>(NettyServerHandler.java:35)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:31)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:1)
+	at io.netty.channel.ChannelInitializer.channelRegistered(ChannelInitializer.java:69)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelRegisteredNow(ChannelHandlerInvokerUtil.java:30)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRegistered(DefaultChannelHandlerInvoker.java:49)
+	at io.netty.channel.DefaultChannelHandlerContext.fireChannelRegistered(DefaultChannelHandlerContext.java:285)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRegistered(DefaultChannelPipeline.java:801)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:427)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.access$100(AbstractChannel.java:369)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$1.run(AbstractChannel.java:403)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:318)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:794)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-27 22:31:30,590  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:43:03,543  INFO [Server.java:54] - PHP日志服务器启动花费了:691
+2015-11-27 22:54:21,065  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:57:37,950  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:57:38,065  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:58:36,642  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:59:43,012  INFO [Server.java:38] - 启动日志服务器8088
+2015-11-27 22:59:43,154  INFO [Server.java:54] - PHP日志服务器启动花费了:0
+2015-11-27 22:59:46,298  INFO [NettyServer.java:64] - NettyServer启动8088
+2015-11-27 22:59:54,289  WARN [Slf4JLogger.java:151] - Failed to initialize a channel. Closing: [id: 0x94ee8322, /127.0.0.1:54722 => /127.0.0.1:8088]
+java.lang.IllegalStateException: cannot determine the type of the type parameter 'T': class com.song.moja.netty.NettyServerHandler
+	at io.netty.util.internal.TypeParameterMatcher.fail(TypeParameterMatcher.java:171)
+	at io.netty.util.internal.TypeParameterMatcher.find0(TypeParameterMatcher.java:165)
+	at io.netty.util.internal.TypeParameterMatcher.find(TypeParameterMatcher.java:93)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:65)
+	at io.netty.channel.SimpleChannelInboundHandler.<init>(SimpleChannelInboundHandler.java:55)
+	at com.song.moja.netty.NettyServerHandler.<init>(NettyServerHandler.java:35)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:31)
+	at com.song.moja.netty.NettyServerInitializer.initChannel(NettyServerInitializer.java:1)
+	at io.netty.channel.ChannelInitializer.channelRegistered(ChannelInitializer.java:69)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelRegisteredNow(ChannelHandlerInvokerUtil.java:30)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRegistered(DefaultChannelHandlerInvoker.java:49)
+	at io.netty.channel.DefaultChannelHandlerContext.fireChannelRegistered(DefaultChannelHandlerContext.java:285)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRegistered(DefaultChannelPipeline.java:801)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:427)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.access$100(AbstractChannel.java:369)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$1.run(AbstractChannel.java:403)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:318)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:794)
+	at java.lang.Thread.run(Thread.java:745)

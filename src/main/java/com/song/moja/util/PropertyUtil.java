@@ -2,11 +2,8 @@ package com.song.moja.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
@@ -15,7 +12,6 @@ import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 /**
  * 
@@ -41,7 +37,6 @@ import org.apache.log4j.PropertyConfigurator;
  * @author
  */
 public class PropertyUtil {
-
 	private static Logger LOG = Logger.getLogger(PropertyUtil.class);
 
 	private static Map<String, String> map;
@@ -55,8 +50,7 @@ public class PropertyUtil {
 			prop.load(in);
 		} catch (IOException e) {
 			LOG.error("配置文件" + propPath + "不存在!");
-			throw new RuntimeException("配置文件" + propPath + "不存在!"
-					+ e.getMessage(), e);
+			throw new RuntimeException("配置文件" + propPath + "不存在!" + e.getMessage(), e);
 		} finally {
 			try {
 				if (null != in) {
@@ -64,8 +58,7 @@ public class PropertyUtil {
 				}
 			} catch (IOException e) {
 				LOG.error("读取配置文件" + propPath + "关闭in输入流错误!", e);
-				throw new RuntimeException("读取配置文件" + propPath + "关闭in输入流错误!"
-						+ e.getMessage(), e);
+				throw new RuntimeException("读取配置文件" + propPath + "关闭in输入流错误!" + e.getMessage(), e);
 			}
 		}
 		map = new HashMap<String, String>((Map) prop);
@@ -85,8 +78,8 @@ public class PropertyUtil {
 	}
 
 	public static void send(SocketChannel socketChannel) {
-		if(null==socketChannel){
-			return ;
+		if (null == socketChannel) {
+			return;
 		}
 		try {
 			socketChannel.write(ByteBuffer.wrap(toStr().getBytes()));
@@ -94,11 +87,10 @@ public class PropertyUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		PropertyUtil.init("phplogsys.properties");
 		//
 	}
 
-	
 }

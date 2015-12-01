@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.google.protobuf.MessageLite;
 import com.mongodb.DBObject;
 import com.song.moja.process.DeliverMessage;
 import com.song.moja.process.ObjConvertUtil;
@@ -33,21 +32,21 @@ public class SaveAdaptor<T> {
 			return false;
 		}
 		List<DBObject> list = new ArrayList<DBObject>(tempList.size());
-		String tableName = DeliverMessage.getTableName(list);
-		T t2 = null;
-		//这种的话就是protobuf的日志类型
-		if(t2 instanceof MessageLite){
-			MessageLite ml = (MessageLite)t2;
-			ObjConvertUtil.PB2DBObj(ml);
-		}
+		// String tableName = DeliverMessage.getTableName(list);
+		// T t2 = null;
+		// //这种的话就是protobuf的日志类型
+		// if(t2 instanceof MessageLite){
+		// MessageLite ml = (MessageLite)t2;
+		// ObjConvertUtil.PB2DBObj(ml);
+		// }
 		for (T t : tempList) {
-			String transferType = "";
-			
-			// 将t转换成DBObject
-			DBObject obj = ObjConvertUtil.t2DBObj(t);
-			list.add(obj);
+			System.out.println("------------>" + t);
+			// String transferType = "";
+			// // 将t转换成DBObject
+			// DBObject obj = ObjConvertUtil.t2DBObj(t);
+			// list.add(obj);
 		}
-		boolean result = MongoSaveUtil.insertList(list, tableName);
-		return result;
+		// boolean result = MongoSaveUtil.insertList(list, tableName);
+		return true;// result;
 	}
 }

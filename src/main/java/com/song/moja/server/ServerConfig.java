@@ -3,8 +3,10 @@ package com.song.moja.server;
 import java.util.Properties;
 
 import com.song.moja.util.Utils;
+
 /**
  * 关于服务器Server类的一些配置
+ * 
  * @author 3gods.com
  *
  */
@@ -13,7 +15,7 @@ public class ServerConfig extends Config {
 	public ServerConfig(Properties props) {
 		super(props);
 	}
-	
+
 	public int getPort() {
 		return Utils.getInt(props, "server.port", 8088);
 	}
@@ -23,33 +25,28 @@ public class ServerConfig extends Config {
 	}
 
 	public int getMaxMessageSize() {
-		return Utils.getIntInRange(props, "max.message.size", 1024 * 1024, 0,
-				Integer.MAX_VALUE);
+		return Utils.getIntInRange(props, "max.message.size", 1024 * 1024, 0, Integer.MAX_VALUE);
 	}
 
 	public int getDefaultFlushIntervalMs() {
-		return Utils.getInt(props, "log.default.flush.interval.ms",
-				getFlushSchedulerThreadRate());
+		return Utils.getInt(props, "log.default.flush.interval.ms", getFlushSchedulerThreadRate());
 	}
 
 	public int getFlushSchedulerThreadRate() {
-		return Utils.getInt(props, "log.default.flush.scheduler.interval.ms",
-				3000);
+		return Utils.getInt(props, "log.default.flush.scheduler.interval.ms", 3000);
 	}
 
 	public boolean getEnableZookeeper() {
 		return Utils.getBoolean(props, "enable.zookeeper", false);
 	}
-	
+
 	public String getLogDir() {
 		return Utils.getString(props, "log.dir");
 	}
 
-
 	public int getMQInitSize() {
 		return Utils.getInt(props, "mq.init.size", 5000);
 	}
-
 
 	public int getEnqueueTimeoutMs() {
 
