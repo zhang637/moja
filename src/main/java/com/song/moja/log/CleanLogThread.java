@@ -18,8 +18,8 @@ import com.google.protobuf.MessageLite;
 
 public class CleanLogThread<T extends MessageLite> extends Thread implements Closeable {
 	private static Logger LOG = Logger.getLogger(CleanLogThread.class);
-	
-//	final BlockingQueue<T extends MessageLite> mq;
+
+	// final BlockingQueue<T extends MessageLite> mq;
 	final BlockingQueue<MessageLite> mq;
 
 	final LogConfig logConfig;
@@ -77,8 +77,7 @@ public class CleanLogThread<T extends MessageLite> extends Thread implements Clo
 				count++;
 			}
 		} catch (IOException e) {
-			LOG.error("FileUtils调用convertFile2Msg，读取文件"
-					+ freshestFile.getAbsolutePath() + "出错!!!");
+			LOG.error("FileUtils调用convertFile2Msg，读取文件" + freshestFile.getAbsolutePath() + "出错!!!");
 		} finally {
 			try {
 				if (null != inputStream) {
@@ -88,15 +87,15 @@ public class CleanLogThread<T extends MessageLite> extends Thread implements Clo
 				LOG.error("FileUtils调用convertFile2Msg，关闭br出错!!!");
 			}
 		}
-		
+
 		mq.addAll(msgList);
-		//PB对象可以这样搞，但是JSON的文本怎么搞?
+		// PB对象可以这样搞，但是JSON的文本怎么搞?
 		// 3.删除文件，将读出的日志载入到mq
-		
+
 	}
 
 	public void close() throws IOException {
 		shutdownLatch.countDown();
 	}
-	
+
 }

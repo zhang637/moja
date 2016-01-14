@@ -11,7 +11,7 @@ import com.song.moja.util.Utils;
 /**
  * 程序入口类，主要是加载配置文件，添加hook线程
  * 
- * @author 3gods.com
+ * @author zhangyoulei
  *
  */
 public class Moja implements Closeable {
@@ -55,7 +55,7 @@ public class Moja implements Closeable {
 				try {
 					server.awaitShutdown();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					LOG.error(e);
 				}
 			}
 		};

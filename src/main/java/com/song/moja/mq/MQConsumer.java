@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-import com.song.moja.db.SaveAdaptor;
+import com.song.moja.db.DataProcessor;
 import com.song.moja.log.LogConfig;
 import com.song.moja.persistent.PersistThread;
 
@@ -18,8 +18,9 @@ public class MQConsumer<T> implements Runnable {
 	final BlockingQueue<T> mq;
 	final long sleepTime;
 	final int mqBatchSize;
+	final long timeInterval;
 	final MQConfig config;
-	boolean flag = false;
+	private boolean flag = false;
 	long lastDrainTime = System.currentTimeMillis();
 	private List<T> tempList;
 	private LogConfig logConfig;
@@ -28,6 +29,7 @@ public class MQConsumer<T> implements Runnable {
 		this.mq = mq;
 		this.config = mqConfig;
 		sleepTime = config.getSleepTime();
+		timeInterval = config.getTimeInterval();
 		mqBatchSize = config.getBatchSize();
 		tempList = new ArrayList<T>(mqBatchSize);
 		logConfig = new LogConfig(mqConfig.props);
@@ -35,15 +37,14 @@ public class MQConsumer<T> implements Runnable {
 
 	public void run() {
 		for (;;) {
-			if (mq.size() >= mqBatchSize) {
-				int drainNum = mq.drainTo(tempList, mqBatchSize);
+			tempList.clear();
+			boolean timeCondition = (System.currentTimeMillis() - lastDrainTime > timeInterval);
+			if (mq.size() >= mqBatchSize || timeCondition || flag) {
 				lastDrainTime = System.currentTimeMillis();
-				flag = true;
+				mq.drainTo(tempList, mqBatchSize);
 				// 调用方法保存到目的地，这个地方应该是根据配置选用不同的类来保存
-				boolean result = SaveAdaptor.save2MongDB(tempList);
+				boolean result = DataProcessor.process(tempList);
 				if (!result) {
-					// 如果保存失败，也可以再次推入到mq中，3次没有成功，持久化到本地
-					// mq.addAll(tempList);
 					new PersistThread<T>(mq, tempList, logConfig).start();
 				}
 			} else { // 感觉这个地方也不是太好，如果在休眠的这段时间刚好有很多数据过来
@@ -53,15 +54,10 @@ public class MQConsumer<T> implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			boolean timeCondition = (System.currentTimeMillis() - lastDrainTime > 3000);
-			if (timeCondition && flag) {
-				mq.drainTo(tempList, mqBatchSize);
-				boolean result = SaveAdaptor.save2MongDB(tempList);
-				if (!result) {
-					// mq.addAll(tempList);
-					new PersistThread<T>(mq, tempList, logConfig).start();
-				}
-			}
 		}
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
 	}
 }

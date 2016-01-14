@@ -11,10 +11,10 @@ import com.song.moja.process.ObjConvertUtil;
 
 /**
  * 
- * @author songxin 这个类是描述消息最终保存到哪里的1.写HDFS 2.写MongDB
+ * @author 这个类是描述消息最终保存到哪里的1.写HDFS 2.写MongDB
  */
-public class SaveAdaptor<T> {
-	private static Logger LOG = Logger.getLogger(SaveAdaptor.class);
+public class DataProcessor<T> {
+	private static Logger LOG = Logger.getLogger(DataProcessor.class);
 
 	public static <T> boolean save2MongDB(T t) {
 		if (null == t) {
@@ -27,7 +27,7 @@ public class SaveAdaptor<T> {
 	}
 
 	// 保存一个List
-	public static <T> boolean save2MongDB(List<T> tempList) {
+	public static <T> boolean process(List<T> tempList) {
 		if (null == tempList || tempList.size() <= 0) {
 			return false;
 		}
@@ -40,13 +40,13 @@ public class SaveAdaptor<T> {
 		// ObjConvertUtil.PB2DBObj(ml);
 		// }
 		for (T t : tempList) {
-			System.out.println("------------>" + t);
+			System.out.println(Thread.currentThread().getId() + "------------>" + t);
 			// String transferType = "";
 			// // 将t转换成DBObject
 			// DBObject obj = ObjConvertUtil.t2DBObj(t);
 			// list.add(obj);
 		}
 		// boolean result = MongoSaveUtil.insertList(list, tableName);
-		return true;// result;
+		return false;// result;
 	}
 }

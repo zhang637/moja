@@ -44,7 +44,7 @@ public class PersistThread<T> extends Thread {
 		// out = new FileOutputStream(file, true);
 
 		for (int i = 0; i < tempList.size(); i++) {
-			System.out.println("--------------------" + tempList.get(i));
+			System.out.println("+++++++++++" + tempList.get(i));
 			// out = isFile2Big(file, logMaxSize, out);
 			// T log = tempList.get(i);
 			// byte[] bys = FastJsonSerializer.serialize(log);
@@ -74,14 +74,14 @@ public class PersistThread<T> extends Thread {
 			try {
 				output = new FileOutputStream(file, true);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				LOG.info(e);
 			} finally {
 				try {
 					if (out != null) {
 						out.close();
 					}
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOG.info(e);
 				}
 			}
 			return output;

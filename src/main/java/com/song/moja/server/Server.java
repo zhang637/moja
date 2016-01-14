@@ -58,7 +58,7 @@ public class Server<T> {
 		}
 	}
 
-	public ThreadManager getThreadManager() {
+	public ThreadManager<T> getThreadManager() {
 		return threadManager;
 	}
 

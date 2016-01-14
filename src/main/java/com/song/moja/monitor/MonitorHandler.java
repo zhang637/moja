@@ -1,4 +1,5 @@
 package com.song.moja.monitor;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,9 +16,10 @@ import com.song.moja.http.HTTPUtils;
 import com.song.moja.server.ServerConfig;
 import com.song.moja.util.Constance;
 import com.song.moja.util.SocketUtil;
+
 /**
- * 关于此线程监听8888端口响应监控队列请求
- * 这个后面可能使用JMX实现 
+ * 关于此线程监听8888端口响应监控队列请求 这个后面可能使用JMX实现
+ * 
  * @author 3gods.com
  *
  */
@@ -41,8 +43,8 @@ public class MonitorHandler extends Thread implements Closeable {
 		try {
 			ss = new ServerSocket(monitorPort);
 			while (!Thread.interrupted()) {
-				socket  = ss.accept();
-				
+				socket = ss.accept();
+
 				OutputStream out = socket.getOutputStream();
 				InputStream in = socket.getInputStream();
 

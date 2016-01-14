@@ -34,10 +34,9 @@ public class ServiceProvider {
 		String url = null;
 		try {
 			url = String.format("%s,%d", host, port);
-			System.out.println("格式化服务器地址" + url);
+			LOG.info("格式化服务器地址" + url);
 		} catch (Exception e) {
-			e.printStackTrace();
-			LOG.error("", e);
+			LOG.error(e);
 		}
 		return url;
 	}

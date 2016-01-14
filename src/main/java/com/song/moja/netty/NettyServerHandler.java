@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSON;
 import com.song.moja.log.LogConfig;
 import com.song.moja.persistent.PersistThread;
@@ -23,6 +25,8 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @param <T>
  */
 public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
+	private Logger log = Logger.getLogger(NettyServerHandler.class);
+
 	final ThreadManager<T> threadManager;
 	final ServerConfig config;
 	final long enqueueTimeoutMs;
@@ -43,7 +47,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
 	}
 
 	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object obj) throws Exception {// 这种是JSON格式的
+	public void channelRead(ChannelHandlerContext ctx, Object obj) throws Exception {
 		byte[] bys = Serialization.serialize(obj);
 		if (bys.length > maxMessageSize) {
 			throw new IllegalArgumentException("客户端发送的消息过大!!!长度是:" + bys.length);
@@ -52,7 +56,7 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
 		T data = (T) obj;
 		BlockingQueue<T> queue = threadManager.getMq();
 		boolean added = false;
-		
+
 		if (data != null) {
 			try {
 				if (enqueueTimeoutMs == 0) {
@@ -73,13 +77,13 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
 			resultMsg.setErrCode(resultMsgConfig.getSuccCode());
 			resultMsg.setErrMsg(resultMsgConfig.getSuccMsg());
 		} else if (!added) {
-			int drainResult = queue.drainTo(tempList, persistBatchSize);
+			queue.drainTo(tempList, persistBatchSize);
 			new PersistThread<T>(queue, tempList, new LogConfig(config.props)).start();
 			tempList.clear();
 		}
 		// 将对象转化成json，然后返回
 		String resultMsgStr = JSON.toJSONString(resultMsg, true);
-		System.out.println(resultMsgStr);
+		log.info(resultMsgStr);
 		ctx.writeAndFlush(resultMsgStr.getBytes());
 	}
 
@@ -90,6 +94,6 @@ public class NettyServerHandler<T> extends SimpleChannelInboundHandler {
 	}
 
 	protected void messageReceived(ChannelHandlerContext arg0, Object arg1) throws Exception {
-		System.out.println("messageReceived" + arg1);
+		log.info("messageReceived" + arg1);
 	}
 }

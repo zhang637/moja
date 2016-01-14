@@ -64,7 +64,7 @@ public class NettyServer<T> extends Thread implements Closeable {
 				LOG.info("NettyServer启动" + port);
 				ch.closeFuture().sync();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LOG.info(e);
 			}
 		} finally {
 			bossGroup.shutdownGracefully();

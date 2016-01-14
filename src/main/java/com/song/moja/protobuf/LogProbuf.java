@@ -4,687 +4,690 @@
 package com.song.moja.protobuf;
 
 public final class LogProbuf {
-  private LogProbuf() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-  }
-  public interface LogOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
+	private LogProbuf() {
+	}
 
-    // required int32 log_id = 1;
-    /**
-     * <code>required int32 log_id = 1;</code>
-     *
-     * <pre>
-     *日志id
-     * </pre>
-     */
-    boolean hasLogId();
-    /**
-     * <code>required int32 log_id = 1;</code>
-     *
-     * <pre>
-     *日志id
-     * </pre>
-     */
-    int getLogId();
+	public static void registerAllExtensions(com.google.protobuf.ExtensionRegistry registry) {
+	}
 
-    // optional string log_msg = 2;
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    boolean hasLogMsg();
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    java.lang.String getLogMsg();
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    com.google.protobuf.ByteString
-        getLogMsgBytes();
-  }
-  /**
-   * Protobuf type {@code protobuf.Log}
-   */
-  public static final class Log extends
-      com.google.protobuf.GeneratedMessage
-      implements LogOrBuilder {
-    // Use Log.newBuilder() to construct.
-    private Log(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private Log(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+	public interface LogOrBuilder extends com.google.protobuf.MessageOrBuilder {
 
-    private static final Log defaultInstance;
-    public static Log getDefaultInstance() {
-      return defaultInstance;
-    }
+		// required int32 log_id = 1;
+		/**
+		 * <code>required int32 log_id = 1;</code>
+		 *
+		 * <pre>
+		 * 日志id
+		 * </pre>
+		 */
+		boolean hasLogId();
 
-    public Log getDefaultInstanceForType() {
-      return defaultInstance;
-    }
+		/**
+		 * <code>required int32 log_id = 1;</code>
+		 *
+		 * <pre>
+		 * 日志id
+		 * </pre>
+		 */
+		int getLogId();
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Log(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              logId_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              logMsg_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
-    }
+		// optional string log_msg = 2;
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		boolean hasLogMsg();
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.song.moja.protobuf.LogProbuf.Log.class, com.song.moja.protobuf.LogProbuf.Log.Builder.class);
-    }
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		java.lang.String getLogMsg();
 
-    public static com.google.protobuf.Parser<Log> PARSER =
-        new com.google.protobuf.AbstractParser<Log>() {
-      public Log parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Log(input, extensionRegistry);
-      }
-    };
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		com.google.protobuf.ByteString getLogMsgBytes();
+	}
 
-    @java.lang.Override
-    public com.google.protobuf.Parser<Log> getParserForType() {
-      return PARSER;
-    }
+	/**
+	 * Protobuf type {@code protobuf.Log}
+	 */
+	public static final class Log extends com.google.protobuf.GeneratedMessage implements LogOrBuilder {
+		// Use Log.newBuilder() to construct.
+		private Log(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+			super(builder);
+			this.unknownFields = builder.getUnknownFields();
+		}
 
-    private int bitField0_;
-    // required int32 log_id = 1;
-    public static final int LOG_ID_FIELD_NUMBER = 1;
-    private int logId_;
-    /**
-     * <code>required int32 log_id = 1;</code>
-     *
-     * <pre>
-     *日志id
-     * </pre>
-     */
-    public boolean hasLogId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required int32 log_id = 1;</code>
-     *
-     * <pre>
-     *日志id
-     * </pre>
-     */
-    public int getLogId() {
-      return logId_;
-    }
+		private Log(boolean noInit) {
+			this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+		}
 
-    // optional string log_msg = 2;
-    public static final int LOG_MSG_FIELD_NUMBER = 2;
-    private java.lang.Object logMsg_;
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    public boolean hasLogMsg() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    public java.lang.String getLogMsg() {
-      java.lang.Object ref = logMsg_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          logMsg_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string log_msg = 2;</code>
-     *
-     * <pre>
-     *日志消息
-     * </pre>
-     */
-    public com.google.protobuf.ByteString
-        getLogMsgBytes() {
-      java.lang.Object ref = logMsg_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        logMsg_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+		private static final Log defaultInstance;
 
-    private void initFields() {
-      logId_ = 0;
-      logMsg_ = "";
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
+		public static Log getDefaultInstance() {
+			return defaultInstance;
+		}
 
-      if (!hasLogId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
+		public Log getDefaultInstanceForType() {
+			return defaultInstance;
+		}
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, logId_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getLogMsgBytes());
-      }
-      getUnknownFields().writeTo(output);
-    }
+		private final com.google.protobuf.UnknownFieldSet unknownFields;
 
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
+		@java.lang.Override
+		public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
+			return this.unknownFields;
+		}
 
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, logId_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getLogMsgBytes());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
+		private Log(com.google.protobuf.CodedInputStream input,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+						throws com.google.protobuf.InvalidProtocolBufferException {
+			initFields();
+			int mutable_bitField0_ = 0;
+			com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet
+					.newBuilder();
+			try {
+				boolean done = false;
+				while (!done) {
+					int tag = input.readTag();
+					switch (tag) {
+					case 0:
+						done = true;
+						break;
+					default: {
+						if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+							done = true;
+						}
+						break;
+					}
+					case 8: {
+						bitField0_ |= 0x00000001;
+						logId_ = input.readInt32();
+						break;
+					}
+					case 18: {
+						bitField0_ |= 0x00000002;
+						logMsg_ = input.readBytes();
+						break;
+					}
+					}
+				}
+			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
+				throw e.setUnfinishedMessage(this);
+			} catch (java.io.IOException e) {
+				throw new com.google.protobuf.InvalidProtocolBufferException(e.getMessage()).setUnfinishedMessage(this);
+			} finally {
+				this.unknownFields = unknownFields.build();
+				makeExtensionsImmutable();
+			}
+		}
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
+		public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+			return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
+		}
 
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.song.moja.protobuf.LogProbuf.Log parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
+		protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+			return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_fieldAccessorTable
+					.ensureFieldAccessorsInitialized(com.song.moja.protobuf.LogProbuf.Log.class,
+							com.song.moja.protobuf.LogProbuf.Log.Builder.class);
+		}
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.song.moja.protobuf.LogProbuf.Log prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
+		public static com.google.protobuf.Parser<Log> PARSER = new com.google.protobuf.AbstractParser<Log>() {
+			public Log parsePartialFrom(com.google.protobuf.CodedInputStream input,
+					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+							throws com.google.protobuf.InvalidProtocolBufferException {
+				return new Log(input, extensionRegistry);
+			}
+		};
 
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code protobuf.Log}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.song.moja.protobuf.LogProbuf.LogOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
-      }
+		@java.lang.Override
+		public com.google.protobuf.Parser<Log> getParserForType() {
+			return PARSER;
+		}
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.song.moja.protobuf.LogProbuf.Log.class, com.song.moja.protobuf.LogProbuf.Log.Builder.class);
-      }
+		private int bitField0_;
+		// required int32 log_id = 1;
+		public static final int LOG_ID_FIELD_NUMBER = 1;
+		private int logId_;
 
-      // Construct using com.song.moja.protobuf.LogProbuf.Log.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
+		/**
+		 * <code>required int32 log_id = 1;</code>
+		 *
+		 * <pre>
+		 * 日志id
+		 * </pre>
+		 */
+		public boolean hasLogId() {
+			return ((bitField0_ & 0x00000001) == 0x00000001);
+		}
 
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
+		/**
+		 * <code>required int32 log_id = 1;</code>
+		 *
+		 * <pre>
+		 * 日志id
+		 * </pre>
+		 */
+		public int getLogId() {
+			return logId_;
+		}
 
-      public Builder clear() {
-        super.clear();
-        logId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        logMsg_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
+		// optional string log_msg = 2;
+		public static final int LOG_MSG_FIELD_NUMBER = 2;
+		private java.lang.Object logMsg_;
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		public boolean hasLogMsg() {
+			return ((bitField0_ & 0x00000002) == 0x00000002);
+		}
 
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
-      }
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		public java.lang.String getLogMsg() {
+			java.lang.Object ref = logMsg_;
+			if (ref instanceof java.lang.String) {
+				return (java.lang.String) ref;
+			} else {
+				com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
+				java.lang.String s = bs.toStringUtf8();
+				if (bs.isValidUtf8()) {
+					logMsg_ = s;
+				}
+				return s;
+			}
+		}
 
-      public com.song.moja.protobuf.LogProbuf.Log getDefaultInstanceForType() {
-        return com.song.moja.protobuf.LogProbuf.Log.getDefaultInstance();
-      }
+		/**
+		 * <code>optional string log_msg = 2;</code>
+		 *
+		 * <pre>
+		 * 日志消息
+		 * </pre>
+		 */
+		public com.google.protobuf.ByteString getLogMsgBytes() {
+			java.lang.Object ref = logMsg_;
+			if (ref instanceof java.lang.String) {
+				com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+				logMsg_ = b;
+				return b;
+			} else {
+				return (com.google.protobuf.ByteString) ref;
+			}
+		}
 
-      public com.song.moja.protobuf.LogProbuf.Log build() {
-        com.song.moja.protobuf.LogProbuf.Log result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
+		private void initFields() {
+			logId_ = 0;
+			logMsg_ = "";
+		}
 
-      public com.song.moja.protobuf.LogProbuf.Log buildPartial() {
-        com.song.moja.protobuf.LogProbuf.Log result = new com.song.moja.protobuf.LogProbuf.Log(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.logId_ = logId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.logMsg_ = logMsg_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
+		private byte memoizedIsInitialized = -1;
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.song.moja.protobuf.LogProbuf.Log) {
-          return mergeFrom((com.song.moja.protobuf.LogProbuf.Log)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
+		public final boolean isInitialized() {
+			byte isInitialized = memoizedIsInitialized;
+			if (isInitialized != -1)
+				return isInitialized == 1;
 
-      public Builder mergeFrom(com.song.moja.protobuf.LogProbuf.Log other) {
-        if (other == com.song.moja.protobuf.LogProbuf.Log.getDefaultInstance()) return this;
-        if (other.hasLogId()) {
-          setLogId(other.getLogId());
-        }
-        if (other.hasLogMsg()) {
-          bitField0_ |= 0x00000002;
-          logMsg_ = other.logMsg_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
+			if (!hasLogId()) {
+				memoizedIsInitialized = 0;
+				return false;
+			}
+			memoizedIsInitialized = 1;
+			return true;
+		}
 
-      public final boolean isInitialized() {
-        if (!hasLogId()) {
-          
-          return false;
-        }
-        return true;
-      }
+		public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+			getSerializedSize();
+			if (((bitField0_ & 0x00000001) == 0x00000001)) {
+				output.writeInt32(1, logId_);
+			}
+			if (((bitField0_ & 0x00000002) == 0x00000002)) {
+				output.writeBytes(2, getLogMsgBytes());
+			}
+			getUnknownFields().writeTo(output);
+		}
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.song.moja.protobuf.LogProbuf.Log parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.song.moja.protobuf.LogProbuf.Log) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
+		private int memoizedSerializedSize = -1;
 
-      // required int32 log_id = 1;
-      private int logId_ ;
-      /**
-       * <code>required int32 log_id = 1;</code>
-       *
-       * <pre>
-       *日志id
-       * </pre>
-       */
-      public boolean hasLogId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required int32 log_id = 1;</code>
-       *
-       * <pre>
-       *日志id
-       * </pre>
-       */
-      public int getLogId() {
-        return logId_;
-      }
-      /**
-       * <code>required int32 log_id = 1;</code>
-       *
-       * <pre>
-       *日志id
-       * </pre>
-       */
-      public Builder setLogId(int value) {
-        bitField0_ |= 0x00000001;
-        logId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 log_id = 1;</code>
-       *
-       * <pre>
-       *日志id
-       * </pre>
-       */
-      public Builder clearLogId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        logId_ = 0;
-        onChanged();
-        return this;
-      }
+		public int getSerializedSize() {
+			int size = memoizedSerializedSize;
+			if (size != -1)
+				return size;
 
-      // optional string log_msg = 2;
-      private java.lang.Object logMsg_ = "";
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public boolean hasLogMsg() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public java.lang.String getLogMsg() {
-        java.lang.Object ref = logMsg_;
-        if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          logMsg_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public com.google.protobuf.ByteString
-          getLogMsgBytes() {
-        java.lang.Object ref = logMsg_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          logMsg_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public Builder setLogMsg(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        logMsg_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public Builder clearLogMsg() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        logMsg_ = getDefaultInstance().getLogMsg();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string log_msg = 2;</code>
-       *
-       * <pre>
-       *日志消息
-       * </pre>
-       */
-      public Builder setLogMsgBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        logMsg_ = value;
-        onChanged();
-        return this;
-      }
+			size = 0;
+			if (((bitField0_ & 0x00000001) == 0x00000001)) {
+				size += com.google.protobuf.CodedOutputStream.computeInt32Size(1, logId_);
+			}
+			if (((bitField0_ & 0x00000002) == 0x00000002)) {
+				size += com.google.protobuf.CodedOutputStream.computeBytesSize(2, getLogMsgBytes());
+			}
+			size += getUnknownFields().getSerializedSize();
+			memoizedSerializedSize = size;
+			return size;
+		}
 
-      // @@protoc_insertion_point(builder_scope:protobuf.Log)
-    }
+		private static final long serialVersionUID = 0L;
 
-    static {
-      defaultInstance = new Log(true);
-      defaultInstance.initFields();
-    }
+		@java.lang.Override
+		protected java.lang.Object writeReplace() throws java.io.ObjectStreamException {
+			return super.writeReplace();
+		}
 
-    // @@protoc_insertion_point(class_scope:protobuf.Log)
-  }
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(com.google.protobuf.ByteString data)
+				throws com.google.protobuf.InvalidProtocolBufferException {
+			return PARSER.parseFrom(data);
+		}
 
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_protobuf_Log_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_protobuf_Log_fieldAccessorTable;
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(com.google.protobuf.ByteString data,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+						throws com.google.protobuf.InvalidProtocolBufferException {
+			return PARSER.parseFrom(data, extensionRegistry);
+		}
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    java.lang.String[] descriptorData = {
-      "\n\017proto/log.proto\022\010protobuf\"&\n\003Log\022\016\n\006lo" +
-      "g_id\030\001 \002(\005\022\017\n\007log_msg\030\002 \001(\tB#\n\026com.song." +
-      "moja.protobufB\tLogProbuf"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
-        public com.google.protobuf.ExtensionRegistry assignDescriptors(
-            com.google.protobuf.Descriptors.FileDescriptor root) {
-          descriptor = root;
-          internal_static_protobuf_Log_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-          internal_static_protobuf_Log_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_protobuf_Log_descriptor,
-              new java.lang.String[] { "LogId", "LogMsg", });
-          return null;
-        }
-      };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-  }
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(byte[] data)
+				throws com.google.protobuf.InvalidProtocolBufferException {
+			return PARSER.parseFrom(data);
+		}
 
-  // @@protoc_insertion_point(outer_class_scope)
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(byte[] data,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+						throws com.google.protobuf.InvalidProtocolBufferException {
+			return PARSER.parseFrom(data, extensionRegistry);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(java.io.InputStream input)
+				throws java.io.IOException {
+			return PARSER.parseFrom(input);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(java.io.InputStream input,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry) throws java.io.IOException {
+			return PARSER.parseFrom(input, extensionRegistry);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseDelimitedFrom(java.io.InputStream input)
+				throws java.io.IOException {
+			return PARSER.parseDelimitedFrom(input);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseDelimitedFrom(java.io.InputStream input,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry) throws java.io.IOException {
+			return PARSER.parseDelimitedFrom(input, extensionRegistry);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(com.google.protobuf.CodedInputStream input)
+				throws java.io.IOException {
+			return PARSER.parseFrom(input);
+		}
+
+		public static com.song.moja.protobuf.LogProbuf.Log parseFrom(com.google.protobuf.CodedInputStream input,
+				com.google.protobuf.ExtensionRegistryLite extensionRegistry) throws java.io.IOException {
+			return PARSER.parseFrom(input, extensionRegistry);
+		}
+
+		public static Builder newBuilder() {
+			return Builder.create();
+		}
+
+		public Builder newBuilderForType() {
+			return newBuilder();
+		}
+
+		public static Builder newBuilder(com.song.moja.protobuf.LogProbuf.Log prototype) {
+			return newBuilder().mergeFrom(prototype);
+		}
+
+		public Builder toBuilder() {
+			return newBuilder(this);
+		}
+
+		@java.lang.Override
+		protected Builder newBuilderForType(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+			Builder builder = new Builder(parent);
+			return builder;
+		}
+
+		/**
+		 * Protobuf type {@code protobuf.Log}
+		 */
+		public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+				implements com.song.moja.protobuf.LogProbuf.LogOrBuilder {
+			public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+				return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
+			}
+
+			protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+				return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_fieldAccessorTable
+						.ensureFieldAccessorsInitialized(com.song.moja.protobuf.LogProbuf.Log.class,
+								com.song.moja.protobuf.LogProbuf.Log.Builder.class);
+			}
+
+			// Construct using com.song.moja.protobuf.LogProbuf.Log.newBuilder()
+			private Builder() {
+				maybeForceBuilderInitialization();
+			}
+
+			private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+				super(parent);
+				maybeForceBuilderInitialization();
+			}
+
+			private void maybeForceBuilderInitialization() {
+				if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+				}
+			}
+
+			private static Builder create() {
+				return new Builder();
+			}
+
+			public Builder clear() {
+				super.clear();
+				logId_ = 0;
+				bitField0_ = (bitField0_ & ~0x00000001);
+				logMsg_ = "";
+				bitField0_ = (bitField0_ & ~0x00000002);
+				return this;
+			}
+
+			public Builder clone() {
+				return create().mergeFrom(buildPartial());
+			}
+
+			public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+				return com.song.moja.protobuf.LogProbuf.internal_static_protobuf_Log_descriptor;
+			}
+
+			public com.song.moja.protobuf.LogProbuf.Log getDefaultInstanceForType() {
+				return com.song.moja.protobuf.LogProbuf.Log.getDefaultInstance();
+			}
+
+			public com.song.moja.protobuf.LogProbuf.Log build() {
+				com.song.moja.protobuf.LogProbuf.Log result = buildPartial();
+				if (!result.isInitialized()) {
+					throw newUninitializedMessageException(result);
+				}
+				return result;
+			}
+
+			public com.song.moja.protobuf.LogProbuf.Log buildPartial() {
+				com.song.moja.protobuf.LogProbuf.Log result = new com.song.moja.protobuf.LogProbuf.Log(this);
+				int from_bitField0_ = bitField0_;
+				int to_bitField0_ = 0;
+				if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+					to_bitField0_ |= 0x00000001;
+				}
+				result.logId_ = logId_;
+				if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+					to_bitField0_ |= 0x00000002;
+				}
+				result.logMsg_ = logMsg_;
+				result.bitField0_ = to_bitField0_;
+				onBuilt();
+				return result;
+			}
+
+			public Builder mergeFrom(com.google.protobuf.Message other) {
+				if (other instanceof com.song.moja.protobuf.LogProbuf.Log) {
+					return mergeFrom((com.song.moja.protobuf.LogProbuf.Log) other);
+				} else {
+					super.mergeFrom(other);
+					return this;
+				}
+			}
+
+			public Builder mergeFrom(com.song.moja.protobuf.LogProbuf.Log other) {
+				if (other == com.song.moja.protobuf.LogProbuf.Log.getDefaultInstance())
+					return this;
+				if (other.hasLogId()) {
+					setLogId(other.getLogId());
+				}
+				if (other.hasLogMsg()) {
+					bitField0_ |= 0x00000002;
+					logMsg_ = other.logMsg_;
+					onChanged();
+				}
+				this.mergeUnknownFields(other.getUnknownFields());
+				return this;
+			}
+
+			public final boolean isInitialized() {
+				if (!hasLogId()) {
+
+					return false;
+				}
+				return true;
+			}
+
+			public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
+					com.google.protobuf.ExtensionRegistryLite extensionRegistry) throws java.io.IOException {
+				com.song.moja.protobuf.LogProbuf.Log parsedMessage = null;
+				try {
+					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
+					parsedMessage = (com.song.moja.protobuf.LogProbuf.Log) e.getUnfinishedMessage();
+					throw e;
+				} finally {
+					if (parsedMessage != null) {
+						mergeFrom(parsedMessage);
+					}
+				}
+				return this;
+			}
+
+			private int bitField0_;
+
+			// required int32 log_id = 1;
+			private int logId_;
+
+			/**
+			 * <code>required int32 log_id = 1;</code>
+			 *
+			 * <pre>
+			 * 日志id
+			 * </pre>
+			 */
+			public boolean hasLogId() {
+				return ((bitField0_ & 0x00000001) == 0x00000001);
+			}
+
+			/**
+			 * <code>required int32 log_id = 1;</code>
+			 *
+			 * <pre>
+			 * 日志id
+			 * </pre>
+			 */
+			public int getLogId() {
+				return logId_;
+			}
+
+			/**
+			 * <code>required int32 log_id = 1;</code>
+			 *
+			 * <pre>
+			 * 日志id
+			 * </pre>
+			 */
+			public Builder setLogId(int value) {
+				bitField0_ |= 0x00000001;
+				logId_ = value;
+				onChanged();
+				return this;
+			}
+
+			/**
+			 * <code>required int32 log_id = 1;</code>
+			 *
+			 * <pre>
+			 * 日志id
+			 * </pre>
+			 */
+			public Builder clearLogId() {
+				bitField0_ = (bitField0_ & ~0x00000001);
+				logId_ = 0;
+				onChanged();
+				return this;
+			}
+
+			// optional string log_msg = 2;
+			private java.lang.Object logMsg_ = "";
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public boolean hasLogMsg() {
+				return ((bitField0_ & 0x00000002) == 0x00000002);
+			}
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public java.lang.String getLogMsg() {
+				java.lang.Object ref = logMsg_;
+				if (!(ref instanceof java.lang.String)) {
+					java.lang.String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+					logMsg_ = s;
+					return s;
+				} else {
+					return (java.lang.String) ref;
+				}
+			}
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public com.google.protobuf.ByteString getLogMsgBytes() {
+				java.lang.Object ref = logMsg_;
+				if (ref instanceof String) {
+					com.google.protobuf.ByteString b = com.google.protobuf.ByteString
+							.copyFromUtf8((java.lang.String) ref);
+					logMsg_ = b;
+					return b;
+				} else {
+					return (com.google.protobuf.ByteString) ref;
+				}
+			}
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public Builder setLogMsg(java.lang.String value) {
+				if (value == null) {
+					throw new NullPointerException();
+				}
+				bitField0_ |= 0x00000002;
+				logMsg_ = value;
+				onChanged();
+				return this;
+			}
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public Builder clearLogMsg() {
+				bitField0_ = (bitField0_ & ~0x00000002);
+				logMsg_ = getDefaultInstance().getLogMsg();
+				onChanged();
+				return this;
+			}
+
+			/**
+			 * <code>optional string log_msg = 2;</code>
+			 *
+			 * <pre>
+			 * 日志消息
+			 * </pre>
+			 */
+			public Builder setLogMsgBytes(com.google.protobuf.ByteString value) {
+				if (value == null) {
+					throw new NullPointerException();
+				}
+				bitField0_ |= 0x00000002;
+				logMsg_ = value;
+				onChanged();
+				return this;
+			}
+
+			// @@protoc_insertion_point(builder_scope:protobuf.Log)
+		}
+
+		static {
+			defaultInstance = new Log(true);
+			defaultInstance.initFields();
+		}
+
+		// @@protoc_insertion_point(class_scope:protobuf.Log)
+	}
+
+	private static com.google.protobuf.Descriptors.Descriptor internal_static_protobuf_Log_descriptor;
+	private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_protobuf_Log_fieldAccessorTable;
+
+	public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
+		return descriptor;
+	}
+
+	private static com.google.protobuf.Descriptors.FileDescriptor descriptor;
+
+	static {
+		java.lang.String[] descriptorData = { "\n\017proto/log.proto\022\010protobuf\"&\n\003Log\022\016\n\006lo"
+				+ "g_id\030\001 \002(\005\022\017\n\007log_msg\030\002 \001(\tB#\n\026com.song."
+				+ "moja.protobufB\tLogProbuf" };
+		com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner = new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+			public com.google.protobuf.ExtensionRegistry assignDescriptors(
+					com.google.protobuf.Descriptors.FileDescriptor root) {
+				descriptor = root;
+				internal_static_protobuf_Log_descriptor = getDescriptor().getMessageTypes().get(0);
+				internal_static_protobuf_Log_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+						internal_static_protobuf_Log_descriptor, new java.lang.String[] { "LogId", "LogMsg", });
+				return null;
+			}
+		};
+		com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(descriptorData,
+				new com.google.protobuf.Descriptors.FileDescriptor[] {}, assigner);
+	}
+
+	// @@protoc_insertion_point(outer_class_scope)
 }
