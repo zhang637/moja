@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class NettyClientHandler<T> extends SimpleChannelInboundHandler<T> {
+public class NettyClientHandler<T> extends SimpleChannelInboundHandler {
 	private Logger log = Logger.getLogger(NettyClientHandler.class);
 
 	@Override
@@ -13,15 +13,15 @@ public class NettyClientHandler<T> extends SimpleChannelInboundHandler<T> {
 		// Log log =
 		// LogProbuf.Log.newBuilder().setLogId(1).setLogMsg("这是条日志测试信息!!!").build();
 
-		for (int i = 0; i < 10; i++) {
-			ctx.channel()
-					.writeAndFlush("-------123-------"/* log.toByteArray() */);
+		for (int i = 0; i < 100; i++) {
+			ctx.channel().writeAndFlush(
+					"{\"key\":\"--123--\"}\r\n"/* log.toByteArray() */);
 		}
 	}
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		log.info(msg);
+		log.info((T) msg);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class NettyClientHandler<T> extends SimpleChannelInboundHandler<T> {
 	}
 
 	@Override
-	protected void messageReceived(ChannelHandlerContext ctx, T msg) throws Exception {
-		log.info(msg);
+	protected void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception {
+		log.info((T) msg);
 	}
 }

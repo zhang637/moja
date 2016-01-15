@@ -80,7 +80,7 @@ public class ServerConfig extends Config {
 	}
 
 	public int getPersistBatchSize() {
-		return Utils.getInt(props, "persist.batch.size", 10000);
+		return Utils.getInt(props, "persist.batch.size", 5);
 	}
 
 	public String getProtoFileDir() {

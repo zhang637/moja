@@ -20,6 +20,6 @@ public class NettyClientInitializer<T> extends ChannelInitializer<SocketChannel>
 		// ProtobufVarint32LengthFieldPrepender());
 		// pipeline.addLast("protobufDecoder", new
 		// ProtobufDecoder(CommonLogProbuf.CommonLog.getDefaultInstance()));
-		pipeline.addLast("protobufHandler", new NettyClientHandler<T>());
+		pipeline.addLast("handler", new NettyClientHandler<T>());
 	}
 }

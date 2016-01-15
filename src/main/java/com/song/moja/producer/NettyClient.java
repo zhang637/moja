@@ -29,6 +29,7 @@ public class NettyClient {
 	}
 
 	public static void main(String[] args) throws Exception {
+		// Print usage if no argument is specified.
 		// if (args.length != 2) {
 		// System.err.println("Usage: " +
 		// ProtobufNettyClient.class.getSimpleName() + " <host> <port>");
