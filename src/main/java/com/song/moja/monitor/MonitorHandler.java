@@ -24,11 +24,8 @@ import com.song.moja.util.SocketUtil;
  *
  */
 public class MonitorHandler extends Thread implements Closeable {
-
 	final ServerConfig config;
-
 	final int monitorPort;
-
 	private final CountDownLatch shutdownLatch = new CountDownLatch(1);
 
 	public MonitorHandler(ServerConfig serverConfig) {
@@ -58,7 +55,6 @@ public class MonitorHandler extends Thread implements Closeable {
 					byte[] result = null;
 					if (StringUtils.isEmpty(uri)) {
 						result = HTTPResult.get404Result();
-
 						out.write(result);
 					} else {
 						HTTPUtils.process(uri, out);

@@ -48,6 +48,7 @@ public class MQMonitorInfo implements Serializable {
 	static {
 		new Thread(new Counter(monitorMap)).start();
 	}
+
 	// 消息队列大小
 	private int mqSize;
 
@@ -72,8 +73,7 @@ public class MQMonitorInfo implements Serializable {
 	private Long consumeNumPerSec;
 
 	public static int getMqSize() {
-		return null == monitorMap.get("mqSize") ? 0 : Integer
-				.valueOf(monitorMap.get("mqSize"));
+		return null == monitorMap.get("mqSize") ? 0 : Integer.valueOf(monitorMap.get("mqSize"));
 	}
 
 	public static void setMqSize(int mqSize) {
@@ -81,8 +81,7 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static int getConnectedTotalNum() {
-		return null == monitorMap.get("connectedTotalNum") ? 0 : Integer
-				.valueOf(monitorMap.get("connectedTotalNum"));
+		return null == monitorMap.get("connectedTotalNum") ? 0 : Integer.valueOf(monitorMap.get("connectedTotalNum"));
 	}
 
 	public static void setConnectedTotalNum(int connectedTotalNum) {
@@ -90,8 +89,7 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static int getActiveClientNum() {
-		return null == monitorMap.get("activeClientNum") ? 0 : Integer
-				.valueOf(monitorMap.get("activeClientNum"));
+		return null == monitorMap.get("activeClientNum") ? 0 : Integer.valueOf(monitorMap.get("activeClientNum"));
 	}
 
 	public static void setActiveClientNum(int activeClientNum) {
@@ -99,8 +97,7 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static Long getRecvMsgTotalNum() {
-		return null == monitorMap.get("recvMsgTotalNum") ? 0L : Long
-				.valueOf(monitorMap.get("recvMsgTotalNum"));
+		return null == monitorMap.get("recvMsgTotalNum") ? 0L : Long.valueOf(monitorMap.get("recvMsgTotalNum"));
 	}
 
 	public static void setRecvMsgTotalNum(Long recvMsgTotalNum) {
@@ -108,8 +105,7 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static Long getAddMQFailTotalNum() {
-		return null == monitorMap.get("addMQFailTotalNum") ? 0L : Long
-				.valueOf(monitorMap.get("addMQFailTotalNum"));
+		return null == monitorMap.get("addMQFailTotalNum") ? 0L : Long.valueOf(monitorMap.get("addMQFailTotalNum"));
 	}
 
 	public static void setAddMQFailTotalNum(Long addMQFailTotalNum) {
@@ -117,8 +113,7 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static Long getOutOfMQTotalNum() {
-		return null == monitorMap.get("outOfMQTotalNum") ? 0L : Long
-				.valueOf(monitorMap.get("outOfMQTotalNum"));
+		return null == monitorMap.get("outOfMQTotalNum") ? 0L : Long.valueOf(monitorMap.get("outOfMQTotalNum"));
 	}
 
 	public static void setOutOfMQTotalNum(Long outOfMQTotalNum) {
@@ -126,18 +121,15 @@ public class MQMonitorInfo implements Serializable {
 	}
 
 	public static Long getInsertFailTotalNum() {
-		return null == monitorMap.get("insertFailTotalNum") ? 0L : Long
-				.valueOf(monitorMap.get("insertFailTotalNum"));
+		return null == monitorMap.get("insertFailTotalNum") ? 0L : Long.valueOf(monitorMap.get("insertFailTotalNum"));
 	}
 
 	public static void setInsertFailTotalNum(Long insertFailTotalNum) {
-		monitorMap
-				.put("insertFailTotalNum", String.valueOf(insertFailTotalNum));
+		monitorMap.put("insertFailTotalNum", String.valueOf(insertFailTotalNum));
 	}
 
 	public Long getConsumeNumPerSec() {
-		return null == monitorMap.get("consumeNumPerSec") ? 0L : Long
-				.valueOf(monitorMap.get("consumeNumPerSec"));
+		return null == monitorMap.get("consumeNumPerSec") ? 0L : Long.valueOf(monitorMap.get("consumeNumPerSec"));
 	}
 
 	public void setConsumeNumPerSec(Long consumeNumPerSec) {
@@ -149,10 +141,9 @@ public class MQMonitorInfo implements Serializable {
 		try {
 			String str = JSON.toJSONString(monitorMap, true);
 			out.write(str.getBytes());
-			// out.flush();
+			out.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
-			LOG.info("发送队列监控数据出错!!!");
+			LOG.info("发送队列监控数据出错!!!", e);
 		}
 	}
 
@@ -160,18 +151,15 @@ public class MQMonitorInfo implements Serializable {
 		try {
 			DB db = MongoUtil.getDB();
 			Set<String> dbNames = db.getCollectionNames();
-			Map<String ,String> map = new HashMap<String,String>();
-			
+			Map<String, String> map = new HashMap<String, String>();
+
 			if (dbNames.size() > 0) {
 				for (String name : db.getCollectionNames()) {
-					
-					map.put(name,
-							String.valueOf(db.getCollection(name).count()));
+					map.put(name, String.valueOf(db.getCollection(name).count()));
 				}
 			}
-			
-			monitorMap.put("dbs", map.toString());
 
+			monitorMap.put("dbs", map.toString());
 			String str = JSON.toJSONString(monitorMap, true);
 			socketChannel.write(ByteBuffer.wrap(str.getBytes()));
 		} catch (IOException e) {
@@ -182,20 +170,15 @@ public class MQMonitorInfo implements Serializable {
 
 	// 重写toString方法，在发送邮件警告信息的时候带出
 	public static String toStr() {
-		return new StringBuilder().append("活动客户端连接数:")
-				.append(MQMonitorInfo.getActiveClientNum())
-				.append("socket接收到的总数量:")
-				.append(MQMonitorInfo.getRecvMsgTotalNum()).append("消息队列大小为:")
-				.append(MQMonitorInfo.getMqSize()).append("添加进mq失败的总数量")
-				.append(MQMonitorInfo.getAddMQFailTotalNum())
-				.append("从mq中出队的总数量")
-				.append(MQMonitorInfo.getOutOfMQTotalNum())
-				.append("插入mongodb失败总数量")
+		return new StringBuilder().append("活动客户端连接数:").append(MQMonitorInfo.getActiveClientNum())
+				.append("socket接收到的总数量:").append(MQMonitorInfo.getRecvMsgTotalNum()).append("消息队列大小为:")
+				.append(MQMonitorInfo.getMqSize()).append("添加进mq失败的总数量").append(MQMonitorInfo.getAddMQFailTotalNum())
+				.append("从mq中出队的总数量").append(MQMonitorInfo.getOutOfMQTotalNum()).append("插入mongodb失败总数量")
 				.append(MQMonitorInfo.getInsertFailTotalNum()).toString();
 	}
 
 	public static void clear() {
-		if(null!=monitorMap&&monitorMap.size()>0){
+		if (null != monitorMap && monitorMap.size() > 0) {
 			monitorMap.clear();
 		}
 	}
@@ -217,7 +200,7 @@ class Counter implements Runnable {
 				e.printStackTrace();
 			}
 			long nowConsumeNum = MQMonitorInfo.getRecvMsgTotalNum();
-			
+
 			long consumeNumPerSec = nowConsumeNum - lastConsumeNum;
 			map.put("consumeNumPerSec", String.valueOf(consumeNumPerSec));
 		}

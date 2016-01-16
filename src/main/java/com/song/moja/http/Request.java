@@ -1,8 +1,7 @@
 package com.song.moja.http;
 
-import java.io.InputStream;
-import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -17,11 +16,10 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-
 public class Request implements ServletRequest {
 	private InputStream in;
-	
-	public Request(InputStream in){
+
+	public Request(InputStream in) {
 		this.in = in;
 	}
 
@@ -40,10 +38,9 @@ public class Request implements ServletRequest {
 		return null;
 	}
 
-	public void setCharacterEncoding(String env)
-			throws UnsupportedEncodingException {
+	public void setCharacterEncoding(String env) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getContentLength() {
@@ -123,12 +120,12 @@ public class Request implements ServletRequest {
 
 	public void setAttribute(String name, Object o) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void removeAttribute(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Locale getLocale() {
@@ -196,8 +193,8 @@ public class Request implements ServletRequest {
 		return null;
 	}
 
-	public AsyncContext startAsync(ServletRequest servletRequest,
-			ServletResponse servletResponse) throws IllegalStateException {
+	public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
+			throws IllegalStateException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -211,6 +208,5 @@ public class Request implements ServletRequest {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

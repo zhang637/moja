@@ -24,7 +24,6 @@ import com.song.moja.util.PropertyUtil;
 
 public class HDFSUtil {
 	private HDFSUtil() {
-
 	}
 
 	private static Logger LOG = Logger.getLogger(HDFSUtil.class);
@@ -45,7 +44,6 @@ public class HDFSUtil {
 		if (os.toLowerCase().startsWith("win")) {
 			System.setProperty("hadoop.home.dir", PropertyUtil.get("hadoop.home.dir"));
 		}
-
 	}
 
 	/**

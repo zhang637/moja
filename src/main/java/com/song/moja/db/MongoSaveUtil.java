@@ -12,16 +12,8 @@ import com.mongodb.WriteConcern;
 import com.mongodb.WriteResult;
 
 public class MongoSaveUtil {
-
 	private static Logger LOG = Logger.getLogger(MongoSaveUtil.class);
 
-	/**
-	 * @throws Exception
-	 * 
-	 * 			@author： @date：2015年6月19日 @Description：向mongodb中插入一个list，
-	 *             返回消费失败的List @param tableName @param dbList @return:
-	 *             返回结果描述 @return List<DBObject>: 返回值类型 @throws
-	 */
 	public static boolean insertList(List<DBObject> dbList, String tableName) {
 		boolean result = false;
 		// 验证参数
@@ -53,11 +45,6 @@ public class MongoSaveUtil {
 		}
 	}
 
-	/**
-	 * 
-	 * @author： @date：2015年6月10日 @Description：向mongodb中插入一个DBObject @param
-	 * obj @param tableName @return: 返回结果描述 @return boolean: 返回值类型 @throws
-	 */
 	public static boolean insert(DBObject obj, String tableName) {
 		boolean result = true;
 		try {
@@ -76,5 +63,4 @@ public class MongoSaveUtil {
 		}
 		return result;
 	}
-
 }

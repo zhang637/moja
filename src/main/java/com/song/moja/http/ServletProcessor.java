@@ -14,10 +14,9 @@ import com.song.moja.util.Constance;
 
 public class ServletProcessor {
 
-	public void process(String uri,Request request, Response response) {
+	public void process(String uri, Request request, Response response) {
+		// String uri = request.getUri();
 
-//		String uri = request.getUri();
-		
 		String servletName = uri.substring(uri.lastIndexOf("/") + 1);
 		URLClassLoader loader = null;
 
@@ -29,8 +28,7 @@ public class ServletProcessor {
 			// the forming of repository is taken from the createClassLoader
 			// method in
 			// org.apache.catalina.startup.ClassLoaderFactory
-			String repository = (new URL("file", null,
-					classPath.getCanonicalPath() + File.separator)).toString();
+			String repository = (new URL("file", null, classPath.getCanonicalPath() + File.separator)).toString();
 			// the code for forming the URL is taken from the addRepository
 			// method in
 			// org.apache.catalina.loader.StandardClassLoader class.
@@ -51,8 +49,7 @@ public class ServletProcessor {
 		ResponseFacade responseFacade = new ResponseFacade(response);
 		try {
 			servlet = (Servlet) myClass.newInstance();
-			servlet.service((ServletRequest) requestFacade,
-					(ServletResponse) responseFacade);
+			servlet.service((ServletRequest) requestFacade, (ServletResponse) responseFacade);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} catch (Throwable e) {
