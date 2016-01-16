@@ -8,7 +8,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.logging.SimpleFormatter;
 
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -16,6 +15,8 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.song.moja.util.SocketUtil;
 
 import io.netty.util.internal.ThreadLocalRandom;
 
@@ -66,7 +67,7 @@ public class ServiceConsumer {
 		} catch (IOException e1) {
 			LOGGER.error("", e1);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return zk;
 	}
@@ -104,7 +105,6 @@ public class ServiceConsumer {
 		// url = String.format("rmi://%s:%d/%s", host, port,
 		// remote.getClass().getName());
 
-		SimpleFormatter sf = new SimpleFormatter();
 		String[] strs = url.split(",");
 		String ip = strs[0];
 		int port = Integer.valueOf(strs[1]);
@@ -118,7 +118,9 @@ public class ServiceConsumer {
 			out = socket.getOutputStream();
 			in = socket.getInputStream();
 			out.write(string.getBytes());
-			// result = SocketUtil.readStrFromStream(in);
+			out.flush();
+			String readStrFromStream = SocketUtil.readStrFromStream(socket.getInputStream());
+			System.out.println(readStrFromStream);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -7,7 +7,6 @@ package com.song.moja.zk;
  *
  */
 public class Server {
-
 	public static void main(String[] args) throws Exception {
 		String host = "localhost";
 		int port = 2099;
