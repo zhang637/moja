@@ -12,7 +12,6 @@ import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
 public class ServiceProvider {
-
 	private static Logger LOG = Logger.getLogger(ServiceProvider.class);
 	// 用于等待 SyncConnected 事件触发后继续执行当前线
 	private CountDownLatch latch = new CountDownLatch(1);
@@ -52,7 +51,7 @@ public class ServiceProvider {
 					}
 				}
 			});
-			latch.await(); // 使当前线程处于等待状�?
+			latch.await(); // 使当前线程处于等待状
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			LOG.error("", e1);

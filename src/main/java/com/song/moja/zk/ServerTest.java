@@ -12,7 +12,6 @@ import java.util.concurrent.Executors;
 import com.song.moja.util.SocketUtil;
 
 public class ServerTest {
-
 	public static void main(String[] args) {
 		ExecutorService servicePool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
@@ -30,12 +29,10 @@ public class ServerTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
 
 class SocketHandler implements Runnable {
-
 	private Socket client;
 
 	private int port;
@@ -53,13 +50,10 @@ class SocketHandler implements Runnable {
 			while (true) {
 				out = client.getOutputStream();
 				in = client.getInputStream();
-
 				byte[] temp = SocketUtil.readBytesFromStream(in);
-
 				if (null != temp && temp.length > 0) {
 					String proTypeStr = new String(temp);
-					System.out.println("接收到客户端消息" + proTypeStr + "当前服务器端口是" + port);
-
+					System.out.println(Thread.currentThread().getId() + ",接收到客户端消息" + proTypeStr + ",当前服务器端口是" + port);
 					out.write(("success" + port).getBytes());
 				}
 			}
@@ -75,7 +69,6 @@ class SocketHandler implements Runnable {
 				if (in != null) {
 					in.close();
 				}
-
 				if (client != null) {
 					client.close();
 				}
@@ -84,5 +77,4 @@ class SocketHandler implements Runnable {
 			}
 		}
 	}
-
 }

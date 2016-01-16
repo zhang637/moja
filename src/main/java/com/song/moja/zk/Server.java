@@ -1,10 +1,14 @@
 package com.song.moja.zk;
 
+/**
+ * 创建临时node
+ * 
+ * @author zhangyoulei
+ *
+ */
 public class Server {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("hello!!!");
-
 		String host = "localhost";
 		int port = 2099;
 

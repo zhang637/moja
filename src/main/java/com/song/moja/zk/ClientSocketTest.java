@@ -8,7 +8,7 @@ public class ClientSocketTest {
 
 	public static void main(String[] args) {
 		Socket socket = null;
-		
+
 		int port = 2099;
 		try {
 			socket = new Socket("localhost", port);
@@ -16,12 +16,9 @@ public class ClientSocketTest {
 			for (int i = 0; i < 5; i++) {
 				socket.getOutputStream().write(("hello" + i).getBytes());
 			}
-
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
@@ -30,7 +27,5 @@ public class ClientSocketTest {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
 }
