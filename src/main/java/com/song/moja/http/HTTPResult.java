@@ -1,24 +1,19 @@
 package com.song.moja.http;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.song.moja.util.Constance;
 import com.song.moja.util.FileUtils;
 
-
 public class HTTPResult {
 
 	public static byte[] get404Result() throws IOException {
 
-		String errorMessage = "HTTP/1.1 404 File Not Found\r\n"
-				+ "Content-Type: text/html\r\n" + "Content-Length: 23\r\n"
-				+ "\r\n" + "<h1>Nothing Found! 404 </h1>";
+		String errorMessage = "HTTP/1.1 404 File Not Found\r\n" + "Content-Type: text/html\r\n"
+				+ "Content-Length: 23\r\n" + "\r\n" + "<h1>Nothing Found! 404 </h1>";
 
 		return errorMessage.getBytes();
 	}
@@ -31,7 +26,7 @@ public class HTTPResult {
 		return sb.toString().getBytes();
 	}
 
-	public static byte[] getUriResult(String uri) throws IOException{
+	public static byte[] getUriResult(String uri) throws IOException {
 		if (StringUtils.isEmpty(uri)) {
 			return get404Result();
 		}

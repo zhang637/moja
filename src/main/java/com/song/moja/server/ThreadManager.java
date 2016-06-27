@@ -38,7 +38,7 @@ public class ThreadManager<T> implements Closeable {
 		this.mqConfig = new MQConfig(config.props);
 		this.mqConsumeNum = mqConfig.getThreadNum();
 		servicePool = Executors.newCachedThreadPool();
-//		MongoUtil.init(new MongoConfig(config.props));
+		// MongoUtil.init(new MongoConfig(config.props));
 	}
 
 	public void start() throws Exception {
